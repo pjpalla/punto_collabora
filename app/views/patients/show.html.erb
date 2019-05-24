@@ -1,0 +1,17 @@
+<div class="row">
+    
+    <p id="notice"><%= notice %></p>
+    <div class="col-md-3 text-center">    
+        <%#= image_tag @user.profile.avatar.url, class: 'user-show-avatar' %><br/>
+    </div>
+
+    <div class="col-md-6">
+        <p><%= @patient.patient_id %></p>
+        <p><%= @patient.collection_point %></p>
+        <p><%= @patient.collection_point_name %></p>
+        <p><%= @patient.collection_point_address %></p>        
+    </div>
+</div>
+
+<%= link_to 'Edit', edit_patient_path(@patient) %> |
+<%= link_to 'Back', patients_path %>

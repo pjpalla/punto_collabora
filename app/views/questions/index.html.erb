@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>Quesiti</h1>
+        <!--<p>Questions to evaluate the side effects of drugs used in Sardinia</p>-->
+        <ul class="list-unstyled">
+ 
+            <% 1.upto(@num_of_questions).each do |idx| %>
+                 <li>
+                    <div class="well row <%=cycle('q-bg', '')%>">
+                         <div class="col-md-2 text-center">
+                                <i class="fa fa-question-circle fa-4x" aria-hidden="true"></i>
+                                <!--<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>-->
+                         </div>
+                         <div class="col-md-4">
+                             <h2><%= link_to "Domanda #{idx}", question_path(idx) %></h2>
+                             
+                         </div>
+                        
+                   
+                        <div class="btn-group q-btn">
+                                  <button type="button" class="btn btn-success">Mostra</button>
+                                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li><%= link_to "show question", question_path(idx) %></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                  </ul>
+                          </div>
+                      
+                        <div class="btn-group q-btn">
+                                  <button type="button" class="btn btn-info">Modifica</button>
+                                  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                  </ul>
+                          </div>
+                          
+                         <div class="btn-group q-btn">
+                                  <button type="button" class="btn btn-danger">Cancella</button>
+                                  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                  </ul>
+                          </div>
+                
+                        
+                    </div>
+                </li>
+            <% end %>
+        </ul>    
+        
+    </div>
+    
+    
+    
+    
+    
+</div>

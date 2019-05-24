@@ -1,0 +1,38 @@
+<div class='row'>
+  <div class='col-md-8 col-md-offset-2'>
+      <p id="notice"><%= notice %></p>
+      
+      <h1><span class="homeh1color1">L</span>isting <span class="homeh1color1">P</span>atients</h1><br/>
+      
+      <table class="patient table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th><%= "ID PAZIENTE" %></th>
+            <th><%= "Punto di Raccolta" %></th>
+            <th><%= "Tipologia Punto di Raccolta" %></th>
+            <th class='icon'><i class="fa fa-eye fa-lg" aria-hidden="true"></i></th>
+            <th class='icon'><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></th>
+            <th class='icon'><i class="fa fa-eraser fa-lg" aria-hidden="true"></i></th>      
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @patients.each do |patient| %>
+            <tr>
+              <td><%= patient.patient_id %></td>
+              <td><%= patient.collection_point_name %></td>
+              <td><%= patient.collection_point%></td>
+              <td><%= link_to 'Show', patient %></td>
+              <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+              <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Patient', new_patient_path %>

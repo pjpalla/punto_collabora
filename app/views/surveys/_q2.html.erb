@@ -1,0 +1,30 @@
+ <h3><span class="label label-danger">Domanda 2</span></h3><br/>
+ <%= f.hidden_field :uid, value: " " %>
+ <%#= "Session: #{session[:card_number]}" %>
+ <div class="field">
+   <p><%= @questions[2].qtext %></p>
+ </div>
+ 
+    <div class="radio">
+      <label><input type="radio" name="answer02_0" value="< 1 mese" <%= 'checked' if session[:answer02_0] == "< 1 mese"  %>>< 1 mese</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="answer02_0" value="1 mese / 6 mesi" <%= 'checked' if session[:answer02_0] == "1 mese / 6 mesi"  %>>1 mese / 6 mesi</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="answer02_0" value="6 mesi / 1 anno" <%= 'checked' if session[:answer02_0] == "6 mesi / 1 anno"  %>>6 mesi / 1 anno</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="answer02_0" value="1 anno / 3 anni" <%= 'checked' if session[:answer02_0] == "1 anno / 3 anni"  %>>1 anno / 3 anni</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="answer02_0" value="> 3 anni" <%= 'checked' if session[:answer02_0] == "> 3 anni"  %>>> 3 anni</label>
+    </div>    
+  
+    <br/>
+    
+    <div class="row">
+      <div class="col-md-6">
+       <textarea class="form-control" rows="3" placeholder="Note" name="answer02_note" ><%=session[:answer02_note]%></textarea>
+      </div>
+    </div>

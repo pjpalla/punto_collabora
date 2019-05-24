@@ -1,0 +1,36 @@
+<%= form_for(@patient) do |f| %>
+    <% if @patient.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+  
+        <ul>
+        <% @patient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field form-group">
+        <%= f.label :patient_id, "id paziente".upcase %><br/>
+        <%= f.text_field :patient_id, autofocus: true, value: @random_id, class: 'form-control' %>
+    </div><br/>
+    
+     <div class="field form-group">
+        <%= f.label "tipologia luogo di raccolta" %><br/>
+        <%= f.select :collection_point, @collection_points, class: 'form-control', include_blank: true %>
+    </div><br/>
+    
+    <div class="field form-group">
+        <%= f.label "luogo di raccolta"%><br/>
+        <%= f.text_field :collection_point_name, autofocus: true, class: 'form-control' %>
+    </div><br/>
+    
+    <div class="field form-group">
+        <%= f.label "indirizzo luogo di raccolta"%><br/>
+        <%= f.text_field :collection_point_address, autofocus: true, class: 'form-control' %>
+    </div><br/>
+
+  <div class="actions form-group">
+    <%= f.submit "Registra", class: 'btn btn-success' %>
+  </div>
+<% end %>

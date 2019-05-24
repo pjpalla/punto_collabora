@@ -1,0 +1,31 @@
+  
+<% options = @locations.map{|l| l.upcase} %>
+<%= select_tag "locations", options_for_select(options, options[0]), multiple: false, class: "selectpicker" %><br/><br/>
+
+
+<div class="jumbotron">
+    <h2>Persone Intervistate</h2>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+     <%#= pie_chart({"Female" => @females, "Male" => @males}) %>
+     <%= users_by_sex %>
+  </div>
+   <div class="col-md-6">
+     <%= users_by_age %>   
+  </div>
+</div><br/>
+
+<div class="jumbotron">
+    <h2>Area geografica: Medio Campidano</h2>
+</div>
+
+<div class="row">
+     <div class"col-md-6">
+         <%= users_by_place %>
+     </div>
+ </div> 
+  
+
+

@@ -1,0 +1,20 @@
+<h3><span class="label label-danger">Domanda 16</span></h3><br/>
+ <%= f.hidden_field :uid, value: " " %>
+
+ <div class="field">
+   <p><%= @questions[23].qtext %></p>
+ </div>
+ <div class="radio">
+  <label><input type="radio" name="answer16_0" value="Sì" <%= 'checked' if session[:answer16_0] == "Sì" %> >Sì</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="answer16_0" value= "No" <%= 'checked' if session[:answer16_0] == "No" %> >No</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="answer16_0" value= "Non saprei" <%= 'checked' if session[:answer16_0] == "Non saprei" %> >Non saprei</label>
+</div><br/>
+<div class="row">
+    <div class="col-md-6">
+       <textarea class="form-control" rows="3" placeholder="Note" name="answer16_note" ><%=session[:answer16_note]%></textarea>
+    </div>
+</div>

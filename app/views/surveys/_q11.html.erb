@@ -1,0 +1,54 @@
+<h3><span class="label label-danger">Domanda 11</span></h3><br/>
+ <%= f.hidden_field :uid, value: " " %>
+
+ <div class="field">
+   <p><%= @questions[17].qtext %></p>
+ </div>
+ <div class="radio">
+  <label><input type="radio" name="answer11_0" value="Sì" <%= 'checked' if session[:answer11_0] == "Sì" %> >Sì</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="answer11_0" value= "No" <%= 'checked' if session[:answer11_0] == "No" %> >No</label>
+</div><br/>
+ 
+  <div class="field">
+   <p><%= @questions[18].qtext %></p>
+ </div>
+ 
+<div class="input-group">
+<!--  <span class="input-group-addon" id="basic-addon1">Scheda Numero:</span> -->
+<span class="label label-danger">Nome:</span>
+  <input type="text" class="form-control" placeholder="Nome" aria-describedby="basic-addon1" name="answer11_drug_name" value='<%=session[:answer11_drug_name_1]%>'>
+</div><br/>
+
+<div class="input-group">
+<!--  <span class="input-group-addon" id="basic-addon1">Luogo Raccolta: </span> -->
+  <span class="label label-danger">Categoria:</span>
+  <input type="text" class="form-control" placeholder="Categoria" aria-describedby="basic-addon1" name="answer11_drug_category" value='<%=session[:answer11_drug_category_1]%>'>
+</div> <br/>
+
+<div class="input-group">
+<!--  <span class="input-group-addon" id="basic-addon1">Luogo Raccolta: </span> -->
+  <span class="label label-danger">Dosaggio:</span>
+  <input type="text" class="form-control" placeholder="Dosaggio" aria-describedby="basic-addon1" name="answer11_dosage" value='<%=session[:answer11_dosage_1]%>'>
+</div> <br/>
+
+ <div class="field">
+   <p><%= @questions[19].qtext %></p>
+ </div>
+ 
+ <div class="radio">
+     <label><input type="radio" name="answer11_2" value="una o più volte alla settimana" <%= 'checked' if session[:answer11_2] == "una o più volte alla settimana" %>>una o più volte alla settimana</label>
+ </div>
+ <div class="radio">
+     <label><input type="radio" name="answer11_2" value="una o più volte al mese" <%= 'checked' if session[:answer11_2] == "una o più volte al mese" %>>una o più volte al mese</label>
+ </div>
+ <div class="radio">
+     <label><input type="radio" name="answer11_2" value="una o più volte all’anno" <%= 'checked' if session[:answer11_2] == "una o più volte all’anno" %>>una o più volte all’anno</label>
+ </div>
+
+<div class="row">
+    <div class="col-md-6">
+       <textarea class="form-control" rows="3" placeholder="Note" name="answer11_note" ><%=session[:answer11_note]%></textarea>
+    </div>
+</div>

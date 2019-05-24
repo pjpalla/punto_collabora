@@ -1,0 +1,252 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+.homeh1color1{
+   color: #B40404; 
+}
+
+.homeimg{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.container{
+    strong{
+        color: #aa033b;
+    }
+}
+
+.footer{
+//   position: absolute;
+//   bottom: 0px;
+  margin-top: 100px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  background-color: #f5f5f5;
+  //background-color: #222;
+}
+
+.footer-img{
+
+}
+
+
+
+
+#q-btn-grp{
+    padding:0px;
+}
+
+.q-btn{
+
+    margin-top: 20px;
+
+}
+
+.q-bg{
+    background-color: #d2d2e0;
+    
+}
+
+.well.question-block{
+    color: #fff;
+    h3{
+        margin-top: 0;
+    }
+}
+
+.well.question-description{
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+
+}
+
+.well.subquestion-description{
+    background-color: #996c2b;
+    border-color: #4cae4c;
+
+}
+
+.h1.question{
+    background-color: #e5e4e2;
+    padding: 10px;
+    widht: 100px;
+}
+
+#q-arrows{
+    width: 190px;
+    float: right;
+ 
+}
+
+.patient, .member{
+    
+}
+
+.patient th{
+    background-color: #337ab7;
+
+     
+}
+
+.member th{
+    background-color: #ec1313;
+    color: white;
+}
+
+.patient th.icon{
+   text-align: center;
+}
+
+#selected_drugs{
+   width: 150px;
+    
+}
+  label.stat.white{
+      color: white;
+  } 
+
+  li.stat.white{
+      color: white;
+  } 
+  
+  h3.stat.black{
+    background-color: #222;
+    color: white;
+    padding: 5px;
+}
+
+ h3.stat.green{
+     background-color: #486A03;
+     color: white;
+     padding: 5px;
+ }
+ 
+ h3.stat.brown{
+     background-color: #64360D;
+     color: white;
+     padding: 5px;
+ }
+ 
+ h3.stat.blue{
+     background-color: #337ab7;
+     color: black;
+     padding: 5px;
+ }
+ 
+ h4.stat{
+     color: #337ab7;
+ }
+ 
+ h5.home{
+     color: #9a0033;
+ }
+ 
+ #q3bar{
+     height: 2500px;
+ }
+ 
+ .digg_pagination {
+  background: white;
+  cursor: default;
+  /* self-clearing method: */ }
+  .digg_pagination a, .digg_pagination span, .digg_pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+  .digg_pagination .disabled {
+    color: #999999;
+    border: 1px solid #dddddd; }
+  .digg_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #2e6ab1;
+    color: white;
+    border: 1px solid #2e6ab1; }
+  .digg_pagination a {
+    text-decoration: none;
+    color: #105cb6;
+    border: 1px solid #9aafe5; }
+    .digg_pagination a:hover, .digg_pagination a:focus {
+      color: #000033;
+      border-color: #000033; }
+  .digg_pagination .page_info {
+    background: #2e6ab1;
+    color: white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center; }
+    .digg_pagination .page_info b {
+      color: #000033;
+      background: #6aa6ed;
+      padding: 0.1em 0.25em; }
+  .digg_pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .digg_pagination {
+    height: 1%; }
+  *:first-child + html .digg_pagination {
+    overflow: hidden; }
+    
+.jumbotron p{
+    line-height: 23px;
+}
+
+.pagination>li>a, .pagination>li>a>input{
+    background-color: #eeeeee;
+    color: #d9534f
+    ;
+}
+
+.jumbotron .survey_answer{
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+    font-size: 18px;
+}
+
+.jumbotron .summary{
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    font-size: 18px;
+}
+
+h1.survey_index{
+    width: 350px;
+    float: left;
+    
+}
+
+.btn-lg.survey_index {
+    float: right;
+    margin-top: 15px;
+}
+
+span.glyphicon.glyphicon-plus{
+    margin-right: 3px;
+}
+
+fieldset
+{
+  background-color:#CCC;
+  max-width:500px;
+  padding:16px;	
+  border:2px solid;
+  border-color: #5bc0de;
+  -moz-border-radius:8px;
+  -webkit-border-radius:8px;	
+  border-radius:8px;	
+}

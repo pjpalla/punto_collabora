@@ -1,0 +1,2 @@
+class DataLoaderController < ApplicationController
+end

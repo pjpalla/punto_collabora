@@ -1,0 +1,52 @@
+
+<div class=well>
+    <div class="digg_pagination"%>
+        <div class="page_info">
+            <%= page_entries_info @surveys %>    
+        </div>
+        <%=will_paginate @surveys, :container => false %>
+    </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+        <p id="notice"><%= notice %></p>
+        <h1 class='survey_index'><span class="homeh1color1">E</span>lenco <span class="homeh1color1">I</span>nterviste</h1>
+        <%#= link_to 'New Survey', new_survey_path do %>
+        <%= link_to new_survey_path do %>
+              <button type="button" class="btn btn-default btn-lg survey_index">  
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Nuova
+              </button>  
+                <!--<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>-->
+        <% end %>          
+                  
+        <%# end %>
+        <table class="member table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Contatore</th>
+              <!--<th></th> -->
+              <!--<th class='icon'><i class="fa fa-eye fa-lg" aria-hidden="true"></i></th> 
+              <th class='icon'><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></th>-->
+              <th class='icon'><i class="fa fa-eraser fa-lg" aria-hidden="true"></i></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @surveys.each do |survey| %>
+              <tr>
+                <!--<td><%#= survey.card %></td> -->
+                <td><%= survey.uid %></td>
+                
+                <!--<td><%#= link_to 'Show', survey %></td>
+                <td><%#= link_to 'Edit', edit_survey_path(survey) %></td> -->
+                <td><%= link_to 'Rimuovi', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
+<br>
+
+<%#= link_to 'New Survey', new_survey_path %>

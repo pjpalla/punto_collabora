@@ -1,0 +1,54 @@
+<div class="jumbotron text-center">
+    <h1>Analisi aggregata delle problematiche segnalate</h1>
+    <!--<h4 class="stat">Effetti collaterali e interazioni</h4> -->
+</div>
+
+<% i = 0;  drug_options = @drug_names.map{|d|
+    i = i + 1
+    [d.drug_name, i]
+}
+
+ %>
+ 
+
+<%= form_tag("/statistics/aggregated_drugs", method: :post) do %>
+        <h3 class="stat blue">
+            <div class="row">
+               <div class="col-md-6">
+                    <%= label_tag "select_drug", "Seleziona i farmaci", class: "stat white" %><br/>
+                    <%= select_tag "selected", options_from_collection_for_select(@drug_names, "drug_name", "drug_name"), multiple: true, class: "selectpicker" %>
+                </div>                
+                <div class="col-md-6">
+                 <%= label_tag "selected_drugs", "Farmaci Selezionati:", class: "stat white" %><br/>
+                 <% if @drug_selected.class == Array %>
+                     <ul>
+                         <% @drug_selected.each do |d| %>
+                             <li class="stat white"><%= d %></li>
+                         <% end %>     
+                     </ul>
+                 <% else %>
+                    <ul><li class="stat white"><%= @drug_selected %></li></ul>
+                 <% end %>    
+                </div>
+ 
+            </div>
+        </h3>
+    <div>
+        <% unless @drug_selected.nil?%>
+            <% @drug_selected = [@drug_selected] if @drug_selected.class == String %>
+            <%= column_chart(count_aggregate_drug_effects(@drug_selected),  colors: ["#A7D2F1"], library: {backgroundColor: "#eee", title: "Effetti Riscontrati", vAxis: {format: '#', minValue: 0, maxValue:3 }}) %>
+        <% else %>
+            <%= column_chart(count_drug_effects(@drug_name)[0],  colors: ["#A7D2F1"], library: {backgroundColor: "#eee", title: "Effetti Riscontrati", vAxis: {format: '#', minValue: 0, maxValue:3 }}) %>
+        <% end %>
+    </div>
+    
+<%= submit_tag("Calcola", class: "btn btn-primary navbar-btn", id: "selected_drugs") %>
+<% end %>
+
+
+<!--<h3 class="stat green"><%#= params.inspect %></h3> -->
+ <!--   <h3 class="stat purple %> "><%#= select_tag "drug", options_from_collection_for_select(@drug_names, "id", "drug_name", "1") %></h3>
+    <div>
+        <%#= column_chart(count_drug_effects(d.drug_name)[0],  colors: ["#a48a9e"], library: {backgroundColor: "#eee", title: "Effetti Riscontrati", vAxis: {format: '#', minValue: 0, maxValue:3 }}) %>
+    </div>
+-->    

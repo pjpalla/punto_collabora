@@ -1,0 +1,45 @@
+<%= form_for(@survey, :html =>{class: "form-group"}) do |f| %>
+  <% if @survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% @survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="jumbotron">
+  <div class="container">
+    <nav>
+  <ul class="pagination">
+    <!--<li>-->
+    <!--  <a href="#" aria-label="Previous">-->
+    <!--    <span aria-hidden="true">&laquo;</span>-->
+    <!--  </a>-->
+    <!--</li>-->
+        <% unless @survey.first_step?%> 
+          <li><a><%= f.submit "<<", :id => "back_cmd", :name => "back_button" %></a></li>
+        <%end%> 
+          <% unless @survey.last_step? %>
+            <li><a><%= f.submit ">>"  %></a></li>
+          <% else %>
+              <li><a><%= f.submit "invia" %></a></li>
+          <% end %>
+    </ul>
+</nav>
+
+    <%= render "#{@survey.current_step}", :f => f %>    
+  </div><br/>
+</div>
+
+
+  
+<% end %>
+
+
+<%#= params.inspect %>
+<!--<h2>current step idx : <%#=@survey.step_index %></h2>-->
+

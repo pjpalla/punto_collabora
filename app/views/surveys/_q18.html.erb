@@ -1,0 +1,17 @@
+<h3><span class="label label-danger">Domanda 18</span></h3><br/>
+ <%= f.hidden_field :uid, value: " " %>
+
+ <div class="field">
+   <p><%= @questions[25].qtext %></p>
+ </div>
+
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">?</span>
+  <input type="text" name= "answer18_0" class="form-control" placeholder="Question" aria-describedby="basic-addon1" value='<%=session[:answer18_0]%>'>
+</div><br/>
+
+<div class="row">
+    <div class="col-md-6">
+       <textarea class="form-control" rows="3" placeholder="Note" name="answer18_note" ><%=session[:answer18_note]%></textarea>
+    </div>
+</div>

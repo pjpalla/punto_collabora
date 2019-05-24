@@ -1,0 +1,23 @@
+<h2><span class="label label-danger">Riepilogo</span></h2><br/>
+
+<p class='summary'>Contatore: <strong><%=session[:card_number]%></strong></p>
+<p class='summary'>Punto di raccolta: <strong><%=session[:collection_point]%></strong></p>
+
+<% 1.upto(18) do |n| %>
+    <% questions = Question.where(qid: n) %>
+    <h3><span class="label label-info">Domanda <%= n.to_s%></span></h3><br/>
+    <% for i in 0..(questions.length - 1) %>
+         <div class="field">
+           <p><%= Question.find_by(qid: n, subid: i).qtext %></p>
+         </div>
+         <div>
+             <p class='survey_answer'><%= compose_answer(n, i) %></p>
+         </div>
+    <% end %>
+    <div>
+        <%= field_set_tag  "Nota #{n}" do %>
+               <p><%= get_note(n) %></p>
+        <% end %>
+    </div>
+<% end %>    
+    

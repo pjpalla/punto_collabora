@@ -1,0 +1,40 @@
+<h3><span class="label label-danger">Domanda 4</span></h3><br/>
+ <%= f.hidden_field :uid, value: " " %>
+ <%#= "Session: #{session[:card_number]}" %>
+ <div class="field">
+   <p><%= @questions[5].qtext %></p>
+ </div>
+ <div class="radio">
+  <label><input type="radio" name="answer04_0" value="Sì" <%= 'checked' if session[:answer04_0] == "Sì" %> >Sì</label>
+ </div>
+ <div class="radio">
+  <label><input type="radio" name="answer04_0" value= "No" <%= 'checked' if session[:answer04_0] == "No" %> >No</label>
+ </div><br/>
+ 
+  <div class="field">
+   <p><%= @questions[6].qtext %></p>
+ </div>
+ 
+<div class="input-group">
+<!--  <span class="input-group-addon" id="basic-addon1">Scheda Numero:</span> -->
+<span class="label label-danger">Nome:</span>
+  <input type="text" class="form-control" placeholder="Nome" aria-describedby="basic-addon1" name="answer04_drug_name" value='<%=session[:answer04_drug_name_1]%>'>
+</div><br/>
+
+<div class="input-group">
+<!--  <span class="input-group-addon" id="basic-addon1">Luogo Raccolta: </span> -->
+  <span class="label label-danger">Categoria:</span>
+  <input type="text" class="form-control" placeholder="Categoria" aria-describedby="basic-addon1" name="answer04_drug_category" value='<%=session[:answer04_drug_category_1]%>'>
+</div> <br/>
+
+<div class="input-group">
+<!--  <span class="input-group-addon" id="basic-addon1">Luogo Raccolta: </span> -->
+  <span class="label label-danger">Dosaggio:</span>
+  <input type="text" class="form-control" placeholder="Dosaggio" aria-describedby="basic-addon1" name="answer04_dosage" value='<%=session[:answer04_dosage_1]%>'>
+</div> <br/>
+
+<div class="row">
+  <div class="col-md-6">
+   <textarea class="form-control" rows="3" placeholder="Note" name="answer04_note" ><%=session[:answer04_note]%></textarea>
+  </div>
+</div>

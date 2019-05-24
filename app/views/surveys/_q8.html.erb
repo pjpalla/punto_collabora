@@ -1,0 +1,33 @@
+<h3><span class="label label-danger">Domanda 8</span></h3><br/>
+ <%= f.hidden_field :uid, value: " " %>
+
+ <div class="field">
+   <p><%= @questions[13].qtext %></p>
+ </div>
+ <div class="radio">
+  <label><input type="radio" name="answer08_0" value="Sì" <%= 'checked' if session[:answer08_0] == "Sì" %> >Sì</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="answer08_0" value= "No" <%= 'checked' if session[:answer08_0] == "No" %> >No</label>
+</div><br/>
+
+ <div class="field">
+   <p><%= @questions[14].qtext %></p>
+ </div>
+ 
+<!-- <div class="input-group">-->
+<!--  <span class="input-group-addon" id="basic-addon1">Scheda Numero:</span> -->
+<!--  <input type="text" class="form-control" placeholder="Nome" aria-describedby="basic-addon1" name="answer08_1" value='<%=session[:answer08_1]%>'>-->
+<!--</div><br/>-->
+
+
+    <%#= label_tag "select_drug", "Seleziona i farmaci" %>
+<% options = ["", "medico di base", "specialista", "farmacista"] %>
+<%= select_tag "answer08_1", options_for_select(options, session[:answer08_1]), multiple: true, class: "selectpicker" %><br/><br/>
+
+
+<div class="row">
+    <div class="col-md-6">
+       <textarea class="form-control" rows="3" placeholder="Note" name="answer08_note" ><%=session[:answer08_note]%></textarea>
+    </div>
+</div>

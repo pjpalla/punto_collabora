@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>Indicator Description</h1>
+
+       <table class="table table-bordered table-hover">
+        <tbody>
+           <tr>
+               <th>INDICATOR</th>
+               <th>DESCRIPTION</th>
+
+           </tr><br/>
+           <tr>
+               <th></th>
+               <th></th>
+           </tr>               
+          <% @descriptions.each do |d| %>
+                         
+                 <tr class="<%= cycle('active', 'success', 'warning', 'danger', 'info')%>">
+
+                   <td><%= "I5" %> </td>
+                   <td>
+                     <%= d %>   
+                   </td>
+                </tr>
+            
+          <% end %>
+        </tbody>  
+        </table>
+    </div>
+</div>

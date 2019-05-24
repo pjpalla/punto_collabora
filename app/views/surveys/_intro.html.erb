@@ -1,0 +1,51 @@
+<h3>Informazioni di base</h3><br/>
+<%#= f.hidden_field :uid, value: " " %>
+<%= f.hidden_field :card, value: "aaa" %>
+<div class="input-group">
+<!--  <span class="input-group-addon" id="basic-addon1">Scheda Numero:</span> -->
+<span class="label label-primary">Contatore:</span>
+  <input type="text" class="form-control" placeholder="Contatore" aria-describedby="basic-addon1" name="card_number" value='<%=session[:card_number]%>'>
+</div><br/>
+
+<div class="input-group">
+<!--  <span class="input-group-addon" id="basic-addon1">Luogo Raccolta: </span> -->
+  <span class="label label-primary">Luogo di Raccolta:</span>
+  <input type="text" class="form-control" placeholder="Luogo di raccolta" aria-describedby="basic-addon1" name="collection_point" value='<%=session[:collection_point]%>'>
+</div> <br/>
+
+<div class="input-group">
+<span class="label label-primary">Sesso stimato:</span>
+
+ 
+<div class="radio">
+  <label><input type="radio" name="sex" value="M" <%= 'checked' if session[:sex] == "M"%> >M</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="sex" value= "F" <%= 'checked' if session[:sex] == "F" %> >F</label>
+</div>
+    
+</div>
+
+<div class="input-group">
+<span class="label label-primary">Età stimata:</span>
+    <div class="radio">
+      <label><input type="radio" name="eta" value="18-30" <%= 'checked' if session[:eta] == "18-30" %>>18-30</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="eta" value="30-40" <%= 'checked' if session[:eta] == "30-40" %>>30-40</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="eta" value="40-50" <%= 'checked' if session[:eta] == "40-50" %>>40-50</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="eta" value="50-60" <%= 'checked' if session[:eta] == "50-60" %>>50-60</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="eta" value="60-70" <%= 'checked' if session[:eta] == "60-70" %>>60-70</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="eta" value=">70" <%= 'checked' if session[:eta] == ">70" %>>&nbsp; >70</label>
+    </div>    
+</div>
+
+

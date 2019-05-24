@@ -1,0 +1,160 @@
+<%# require 'pry' %>
+<div class="row">
+  
+    <div class="col-md-8">
+        <h1 class="h1 question"><%="Domanda #{@question.qid}"%>
+        <div id="q-arrows">
+            <%= link_to questions_path do %>
+                <i class="fa fa-list" aria-hidden="true"></i>
+            <% end %>    
+            
+            <%= link_to question_path(@first_question) do %>
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            <% end %>
+            
+            <% previous_question = @question.qid == 1 ? 1 : @question.qid - 1 %>
+            <%= link_to question_path(previous_question) do %>
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+            <% end %>
+            <% next_question = @question.qid == @question_number ? @question_number : @question.qid + 1 %>
+            <%= link_to question_path(next_question) do %>
+                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+            <% end %>
+            
+            <%= link_to question_path(@last_question) do %>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <% end %>
+            
+        </div>
+
+        </h1>
+        <div class="well question-block question-description">
+            <h3>Descrizione</h3>
+            <%= @question.qtext %>
+        </div>
+        <table class="table table-condensed table-hover">
+            <tbody>
+              <% @options.each do |opt| %>
+                    <tr class="<%= cycle('active', 'success', 'warning', 'danger', 'info')%>">
+                    <td><i class="fa fa-hand-o-right" aria-hidden="true"></i></td>    
+                     <td>
+                       <%= "#{opt}" %>   
+                     </td>
+                    </tr>
+              <% end %>
+            </tbody>  
+        </table>
+     
+    </div>
+    
+</div>
+
+<div class = "row">
+    <div class="col-md-8" <%= "id = q3bar" if @question.qid == 3 %>>
+        <h1 class='text-primary'>Risposte</h1> <br/>
+          
+         <% if @question.qid == 3 %>
+             <%= bar_chart(@count_drugs, colors: ["green", "#29970E"], library: {backgroundColor: "#eee", title: "Nome Farmaco", hAxis: {format: '0'}}) %>
+            <%#= bar_chart(@count_drugs, colors: ["green", "#29970E"], library: {backgroundColor: "#eee", title: "Nome Farmaco", height: 1700,  bar: {groupWidth: "55%"}, chartArea: {height: '95%'}, vAxis: {textStyle:{color: 'red', fontSize: 10}}}) %>             
+             <%= bar_chart(@count_categories, colors: ["purple", "#4C0E97  "], library: {backgroundColor: "#eee", title: "Categoria Farmacoterapeutica"}) %> 
+            <%#= bar_chart(@count_categories, colors: ["purple", "#4C0E97  "], library: {backgroundColor: "#eee", title: "Categoria Farmacoterapeutica", height: 1700,  bar: {groupWidth: "55%"}, chartArea: {height: '95%'}, vAxis: {textStyle:{fontSize: 10}}}) %>             
+        
+
+        <% elsif @question.qid == 18 %>
+            <table class="table table-condensed table-hover">
+            <tbody>
+               <tr>
+                   <th></th>
+                   <th>REMARKS</th>
+               </tr><br/>
+               <tr>
+                   <th></th>
+                   <th></th>
+               </tr>               
+              <% get_suggestions(@question.qid).each do |sugg| %>
+                    <tr class="<%= cycle('active', 'success', 'warning', 'danger', 'info')%>">
+                    <td><i class="fa fa-comments fa-2x" aria-hidden="true"></i></td>    
+                     <td>
+                       <%= "#{sugg}" %>   
+                     </td>
+                    </tr>
+              <% end %>
+            </tbody>  
+        </table>        
+        
+         <% else %>
+          <%# binding.pry %>
+             
+             <%= pie_chart(@counts, library: {sliceVisibilityThreshold: 1/1000}) %>
+             <%# binding.pry %>
+             <%= pie_chart(@counts, library: {sliceVisibilityThreshold: 1/1000, pieSliceText: 'value'}) %>
+         <% end %>
+    </div><br/>    
+    
+</div>
+
+    <% @subquestions.each do |sq| %>
+    <div class="col-md-8">
+        <!--<#% binding.pry %>
+        <%# puts "subqid: #{sq.subid}" %>
+        <%# puts "subq_mapping: #{@subq_mapping[sq.subid]}" %> -->
+        <h1 class="h1 question"><%="Sottodomanda #{@subq_mapping[sq.subid]}"%>
+
+        </h1>
+        <div class="well question-block subquestion-description">
+            <h3>Descrizione</h3>
+            <%= sq.qtext %>
+        </div>
+        
+        <table class="table table-condensed table-hover">
+            <tbody>
+              <% @suboptions.each do |sopt| %>
+                    <% if sopt.subid == sq.subid %>  
+                        <tr class="<%= cycle('active', 'success', 'warning', 'danger', 'info')%>">
+                        <td><i class="fa fa-hand-o-right" aria-hidden="true"></i></td>    
+                         <td>
+                           <%= "#{sopt.odescription}" %>   
+                         </td>
+                        </tr>
+                    <% end %>    
+              <% end %>
+            </tbody>  
+        </table>        
+    </div>
+    
+    <div class = "row">
+    <div class="col-md-8">
+        <h1 class='text-primary'>Risposte</h1>
+    
+         <% if (@subquestion_idx.include? sq.qid)  && sq.subid == 1 %>
+            <% count_drugs, count_categories = sub_count(sq.qid, sq.subid)[1..2] %>
+            <%#= bar_chart(count_drugs, colors: ["green", "#29970E"], library: {backgroundColor: "#eee", title: "Nome Farmaco", height: 1700,  bar: {groupWidth: "55%"}, chartArea: {height: '95%'}, vAxis: {textStyle:{color: 'blue', fontSize: 10}}}) %>             
+            <%= bar_chart(count_drugs, colors: ["green", "#29970E"], library: {backgroundColor: "#eee", title: "Nome Farmaco", hAxis: {format: '0'}, vAxis: {textStyle:{fontSize: 5}}}) %>
+            <%= bar_chart(count_categories, colors: ["purple", "#4C0E97  "], library: {backgroundColor: "#eee", title: "Categoria Farmacoterapeutica", hAxis: {format: '0'}, vAxis: {textStyle:{fontSize: 5}}}) %>             
+            <%#= bar_chart(count_categories, colors: ["purple", "#4C0E97  "], library: {backgroundColor: "#eee", title: "Categoria Farmacoterapeutica", height: 1700,  bar: {groupWidth: "55%"}, chartArea: {height: '95%'}, vAxis: {textStyle:{fontSize: 10}}}) %>         
+         
+         <% elsif sq.qid == 8%>
+             <% count_prescriber, count_changer, count = get_prescriber(sq.qid, sq.subid) %>
+             <%# binding.pry %>
+             <%= column_chart(count_prescriber, colors: ["green", "#29970E"], library: {backgroundColor: "#eee", title: "Prescrittore della terapia"} ) %>
+             <%= column_chart(count_changer, colors: ["purple", "#4C0E97  "], library: {backgroundColor: "#eee", title: "Modificatore della terapia"}) %>
+             <%= bar_chart(count, colors: ["orange"], library: {backgroundColor: "#eee", title: "Prescrittore e Modificatore della terapia"})%>
+         <% else %>
+             <% counts = sub_count(sq.qid, sq.subid)[0] %>
+             <%# binding.pry %>
+             <% if counts.keys.length < 3 %>
+                 <%= pie_chart(counts) %>
+             <% else %>
+                 <%= column_chart(counts,  colors: ["lightcoral", "#F08080"], library: {backgroundColor: "#eee"}) %>
+            <% end %>
+        <% end %>  
+
+    </div><br/>    
+    
+    </div>
+    
+    
+    <% end %>
+
+
+     

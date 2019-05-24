@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>Reazioni Indesiderate</h1>
+
+       <table class="table table-bordered table-hover">
+        <tbody>
+           <tr>
+               <th>QUESTION ID</th>
+               <th>DESCRIPTION</th>
+           </tr><br/>
+           <tr>
+               <th></th>
+               <th></th>
+           </tr>
+           <% counter = 0 %>
+          <% @adverse_reactions.each do |ar| %>
+                         
+                 <tr class="<%= cycle('active', 'success', 'warning', 'danger', 'info')%>">
+
+                   <td><%= @qids[counter] %> </td>
+                   <td>
+                     <%= ar %>   
+                   </td>
+                </tr>
+            <% counter += 1 %>
+          <% end %>
+        </tbody>  
+        </table>
+    </div>
+</div>

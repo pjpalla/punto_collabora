@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>Answers Notes</h1>
+        <p>Notes to the answers</p>
+       <table class="table table-bordered table-hover">
+        <tbody>
+           <tr>
+               <th>QUESTION ID</th>
+               <th>QUESTION</th>
+               <th>NOTE</th>
+           </tr><br/>
+           <tr>
+               <th></th>
+               <th></th>
+           </tr>               
+          <% @answers.each do |a| %>
+                <% unless a.note.nil? || a.note == "" %>              
+                 <tr class="<%= cycle('active', 'success', 'warning', 'danger', 'info')%>">
+
+                   <td><%= a.qid %></td>
+                   <td><%= Question.where("qid = ?", a.qid)[0].qtext %></td>
+                   <td>
+                     <%= a.note %>   
+                   </td>
+                </tr>
+                <% end %>
+          <% end %>
+        </tbody>  
+        </table>
+    </div>
+</div>    

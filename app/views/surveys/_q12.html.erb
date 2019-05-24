@@ -1,0 +1,18 @@
+<h3><span class="label label-danger">Domanda 12</span></h3><br/>
+ <%= f.hidden_field :uid, value: " " %>
+
+ <div class="field">
+   <p><%= @questions[20].qtext %></p>
+ </div>
+ <div class="radio">
+  <label><input type="radio" name="answer12_0" value="Sì" <%= 'checked' if session[:answer12_0] == "Sì" %> >Sì</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="answer12_0" value= "No" <%= 'checked' if session[:answer12_0] == "No" %> >No</label>
+</div><br/>
+
+<div class="row">
+    <div class="col-md-6">
+       <textarea class="form-control" rows="3" placeholder="Note" name="answer12_note" ><%=session[:answer12_note]%></textarea>
+    </div>
+</div>
