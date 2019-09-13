@@ -9,7 +9,11 @@
         <h1 class='home_title'><i class="far fa-handshake"></i>  <span class="homeh1color1">P</span>unto <span class="homeh1color1">C</span>ollabora</h1> 
         <%#= image_tag "collabora_plus.png", size: "1000x300" %>
       </div>
-     </div>  
+     </div>
+    <div class="panel panel-danger">
+         <div class="panel-heading"></div>
+         <div class="panel-body"><h2>Hai un problema o un’esigenza/suggerimento da segnalare?</h2></div>
+    </div>
     <!--<h1>Welcome to <span class="homeh1color1">C</span>OLLABORA<span class="homeh1color1">F</span>ARMAC<span class="homeh1color1">I</span>SOLA</h1>-->
     <!--<h3>An awareness program for a collaborative evaluation of drugs used in Sardinia.</h3>-->
 </div>
@@ -20,18 +24,20 @@
 
     </div>
     <div class="col-md-4 text-center">
-        <div id='content-1'>
-            <button class="btn btn-lg btn-primary">
-                    <i class="fa fa-user fa-5x"></i><br/>
-                    Area Cittandino 
-            </button>
-        </div>
-        <div id='content-2'>
-            <button class="btn btn-lg btn-success">
-                <i class="far fa-arrow-alt-circle-right fa-5x"></i><br/>
-                   Entra 
-            </button>            
-        </div>
+            <form action="intro">   
+                <div id='content-1'>
+                        <button class="btn btn-lg btn-primary">
+                                <i class="fa fa-user fa-5x"></i><br/>
+                                Area Cittandino 
+                        </button>
+                </div>
+                <div id='content-2'>
+                    <button class="btn btn-lg btn-success">
+                        <i class="far fa-arrow-alt-circle-right fa-5x"></i><br/>
+                           Entra 
+                    </button>            
+                </div>
+            </form>    
 
               <!--<h2 class="text-center">Drug Side Effects</h2><br/>-->
                   <!--<%#= image_tag "farmacovig2.png", size: "500x333",  class: "homeimg" %>-->                  

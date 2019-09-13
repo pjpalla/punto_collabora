@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="panel panel-danger">
+    <div class="panel-heading"></div>
+    <div class="panel-body" align="center"><h2>Seleziona la provincia coinvolta</h2></div>
+</div>
+</div>
+<div class="row">
+ <div class="container">
+  <p>Indicare la provincia in cui è situata la struttura segnalata in precedenza</p>
+
+<% options = ["Città metropolitana di Cagliari", "Sud Sardegna", "Nuoro", "Oristano", "Sassari"] %>
+<%= select_tag "answer08_1", options_for_select(options, session[:province]), multiple: true, class: "selectpicker" %><br/><br/>
+
+</div>
+
+</div> 
+ 
+ 

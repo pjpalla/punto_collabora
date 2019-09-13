@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   
   
+
+  
+  get 'advices/leave'
+  get 'intro', to: 'advices#intro'
+  resources :advices
+  
+  get 'advices/first'
+  get 'advices/second'
+
   resources :surveys
   resources :patients do 
     resource :profile
