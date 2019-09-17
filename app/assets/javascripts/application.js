@@ -15,7 +15,7 @@
 //= require_tree
 
 //= require chartkick
-$(function() {
+$(document).ready(function() {
   setTimeout(function(){
     $('.alert').fadeOut(800);
   }, 1000);
@@ -31,7 +31,16 @@ $(function() {
     i = ++i % divs.length; // increment i, 
                            //   and reset to 0 when it equals divs.length
 })();
-  
+
+var maxLength = 10;
+
+$('#keyword').keyup(function() {
+  var textlen = maxLength - $(this).val().length;
+  $('#rchars').text(textlen);
 });
+
+});
+
+
 
 
