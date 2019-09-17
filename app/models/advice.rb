@@ -4,7 +4,11 @@ class Advice < ActiveRecord::Base
     
     def current_step
         @current_step || steps.first
-    end    
+    end
+    
+    def current_step_idx(step)
+        steps.index(step) + 1
+    end
 
     def steps
         %w[ a1 a2 a3 a4 a5 confirmation]
