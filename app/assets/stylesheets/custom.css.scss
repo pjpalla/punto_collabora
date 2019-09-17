@@ -273,7 +273,39 @@ h1.home_title{
     max-width: none;
     padding-left: 400px;
     background-color: white;
-    border-color: #ebccd1;
+    
+    //border-color: #ebccd1;
     font-size: 14px;
+    
+}
+
+.primary_choice{
+    border: 1px solid;
+    border-color: #337ab7;
+}
+
+.warning_choice{
+    border: 1px solid;
+    border-color: #f0ad4e;
+}
+
+.success_choice{
+    border: 1px solid;
+    border-color: #5cb85c;
+}
+
+.danger_choice{
+    border: 1px solid;
+    border-color: #c9302c;
+}
+
+.panel-warning>.panel-heading{
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.panel-success>.panel-heading{
+    background-color: #5cb85c;
+    color: white;
     
 }
