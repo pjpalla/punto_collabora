@@ -21,10 +21,13 @@ class AdvicesController < ApplicationController
 
   # GET /advices/new
   def new
+    @choice = get_choice(params[:choice])
+    session[:choice] = @choice unless @choice.empty?
+    logger.info "choice inside new: #{session[:choice]}"
     session[:advice_params] ||= {}
     @advice = Advice.new(session[:advice_params])
     @advice.current_step = session[:advice_step]
-    @advice = Advice.new
+    #@advice = Advice.new
   end
 
   # GET /advices/1/edit
@@ -34,6 +37,8 @@ class AdvicesController < ApplicationController
   # POST /advices
   # POST /advices.json
   def create
+    logger.info "choice inside create: #{session[:choice]}"
+    logger.info "session[:advice01] = #{session[:advice01]}"
     session[:advice_params].deep_merge!(params[:advice]) if params[:advice]
     self.set_session
     @advice = Advice.new(session[:advice_params])
@@ -48,7 +53,7 @@ class AdvicesController < ApplicationController
     end
     session[:advice_step] = @advice.current_step    
     if @advice.new_record?
-      render "new"
+      render "new", choice: session[:choice]
     else
       session[:advice_step] = session[:advice_params] = nil
       flash[:notice] = "Advice correttamente inserito!"
@@ -70,7 +75,20 @@ class AdvicesController < ApplicationController
   end
   
   def set_session
-  
+    session[:advice01] = params[:advice01] if params[:advice01]
+    session[:advice02_a] = params[:advice02_a] if params[:advice02_a] #Ospedale
+    session[:advice02_b] = params[:advice02_b] if params[:advice02_b] #Farmacia
+    session[:advice02_c] = params[:advice02_c] if params[:advice02_c] #Poliambulatorio
+    session[:advice02_d] = params[:advice02_d] if params[:advice02_d] #Ambulatorio medico
+    session[:advice03] = params[:advice03] if params[:advice03] #provincia selezionata
+    session[:advice04_a] = params[:advice04_a] if params[:advice04_a] #Distribuzione presidi medici
+    session[:advice04_b] = params[:advice04_b] if params[:advice04_b] #Sistemi di prenotazione
+    session[:advice04_c] = params[:advice04_c] if params[:advice04_c] #Distribuzione di farmaci
+    session[:advice04_d] = params[:advice04_d] if params[:advice04_d] #Campagne di vaccinazione  
+    session[:advice04_e] = params[:advice04_e] if params[:advice04_e] #Altro 
+    session[:advice05_a] = params[:advice05_a] if params[:advice05_a] #Distribuzione presidi medici
+    session[:advice05_b] = params[:advice05_b] if params[:advice05_b] #Sistemi di prenotazione
+    session[:advice05_c] = params[:advice05_c] if params[:advice05_c] #Distribuzione di farmaci
   end  
   
 
