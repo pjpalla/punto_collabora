@@ -1,24 +1,44 @@
 <div class="row">
-  <div class="panel panel-danger">
-    <div class="panel-heading"></div>
-    <div class="panel-body" align="center"><h2>Seleziona le voci che meglio descrivono il problema</h2></div>
+  <div class="panel panel-<%=session[:choice]%>">
+    <div class="panel-heading"><%= "STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
+    <div class="panel-body" align="center"><h2>Seleziona le voci che meglio descrivono il <%= session[:advice01] == "Problema" ? "problema" : "suggerimento" %></h2></div>
 </div>
 </div>
 <div class="row">
  <div class="container">
-  <p>Indicare le voci che meglio caratterizzano il problema segnalato</p>
+  <p>Indicare le voci che meglio caratterizzano il <%= session[:advice01] == "Problema" ? "problema segnalato" : "suggerimento fornito" %></p>
 
+<% if session[:advice01] == "Problema" %>
   <form>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Malfunzionamento</label>
+      <input type="hidden" name="advice05_a" value="">      
+      <label><input type="checkbox" name = "advice05_a" value="Malfunzionamento" <%= 'checked'  if session[:advice05_a] == "Malfunzionamento" %>>Malfunzionamento</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Materiale insufficiente per quantità</label>
+      <input type="hidden" name="advice05_b" value="">            
+      <label><input type="checkbox" name = "advice05_b" value="Materiale insufficiente per quantità" <%= 'checked'  if session[:advice05_b] == "Materiale insufficiente per quantità" %>>Materiale insufficiente per quantità</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Materiale insufficiente per qualità</label>
+      <input type="hidden" name="advice05_c" value="">            
+      <label><input type="checkbox" name = "advice05_c" value="Materiale insufficiente per qualità" <%= 'checked'  if session[:advice05_c] == "Materiale insufficiente per qualità" %>>Materiale insufficiente per qualità</label>
     </div>
   </form>
+<% else %>
+  <form>
+    <div class="checkbox">
+      <input type="hidden" name="advice05_a" value="">      
+      <label><input type="checkbox" name = "advice05_a" value="Più dialogo / ascolto" <%= 'checked'  if session[:advice05_a] == "Più dialogo / ascolto" %>>Più dialogo / ascolto</label>
+    </div>
+    <div class="checkbox">
+      <input type="hidden" name="advice05_b" value="">            
+      <label><input type="checkbox" name = "advice05_b" value="Più informazione" <%= 'checked'  if session[:advice05_b] == "Più informazione" %>>Più informazione</label>
+    </div>
+    <div class="checkbox">
+      <input type="hidden" name="advice05_c" value="">            
+      <label><input type="checkbox" name = "advice05_c" value="Differenziazione della quantità di materiale distribuito" <%= 'checked'  if session[:advice05_c] == "Differenziazione della quantità di materiale distribuito" %>>Differenziazione della quantità di materiale distribuito</label>
+    </div>
+  </form>
+<% end %>
 </div>
 
 </div> 

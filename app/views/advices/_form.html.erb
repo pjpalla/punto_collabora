@@ -1,4 +1,5 @@
-<%= form_for(@advice, :html => {class: "form-group"}) do |f| %>
+<%#= params.inspect %>
+<%= form_for(@advice, :html => {class: "form-group"}, :choice => @choice) do |f| %>
   <% if @advice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@advice.errors.count, "error") %> prohibited this advice from being saved:</h2>
@@ -27,8 +28,8 @@
           <% end %> 
           <% unless @advice.last_step? %>
               <%#= link_to "Exit", advices_leave_path %>
-              <%= link_to advices_leave_path, id: "advice_arrow", class: "btn btn-lg btn-danger" do %>
-                  <i class="fas fa-sign-out-alt"></i><br/>
+              <%= link_to advices_leave_path, id: "advice_arrow", class: "btn btn-lg btn-danger active" do %>
+                  <i class="fas fa-sign-out-alt"> Esci</i><br/>
               <% end %>
               <%= button_tag(type: "submit", class: "btn btn-lg btn-primary") do %>
                   <i class="fa fa-arrow-circle-right"></i><br/>
@@ -45,13 +46,16 @@
               
               <!--<li><a><%#= f.submit ">>"  %></a></li> -->
           <% else %>
+              <%= link_to advices_leave_path, id: "advice_arrow", class: "btn btn-lg btn-danger active" do %>
+                  <i class="fas fa-sign-out-alt"> Esci</i><br/>
+              <% end %>          
               <%= button_tag(type: "submit", class: "btn btn-lg btn-success") do %>
                   <i class="fas fa-share-square">  Invia</i><br/>
               <% end %>
           <% end %>
       </ul>
 
-    <%= render "#{@advice.current_step}", :f => f %>    
+    <%= render "#{@advice.current_step}", :f => f, :choice => @choice %>    
   </div><br/>
 </div>
 

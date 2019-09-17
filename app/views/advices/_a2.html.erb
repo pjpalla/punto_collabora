@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="panel panel-danger">
-    <div class="panel-heading"></div>
+  <div class="panel panel-<%=session[:choice]%>">
+    <div class="panel-heading"><%= "STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
     <div class="panel-body" align="center"><h2>Seleziona il luogo coinvolto</h2></div>
 </div>
 </div>
@@ -9,16 +9,20 @@
   <p>Di seguito alcune alternative possibili</p>
   <form>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Ospedale</label>
+      <input type="hidden" name="advice02_a" value="">
+      <label><input type="checkbox" name="advice02_a" value="Ospedale" <%= 'checked'  if session[:advice02_a] == "Ospedale" %>>Ospedale</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Farmacia</label>
+      <input type="hidden" name="advice02_b" value="">
+      <label><input type="checkbox" name="advice02_b" value="Farmacia" <%= 'checked' if session[:advice02_b] == "Farmacia" %>>Farmacia</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Poliambulatorio</label>
+      <input type="hidden" name="advice02_c" value="">
+      <label><input type="checkbox" name="advice02_c" value="Poliambulatorio" <%= 'checked' if session[:advice02_c] == "Poliambulatorio" %>>Poliambulatorio</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Ambulatorio medico</label>
+      <input type="hidden" name="advice02_d" value="">      
+      <label><input type="checkbox" name="advice02_d" value="Ambulatorio medico" <%= 'checked' if session[:advice02_d] == "Ambulatorio medico" %>>Ambulatorio medico</label>
     </div>
   </form>
 </div>

@@ -1,6 +1,7 @@
+<%#= javascript_include_tag 'char_limit' %>
 <div class="row">
-  <div class="panel panel-danger">
-    <div class="panel-heading"></div>
+  <div class="panel panel-<%=session[:choice]%>">
+    <div class="panel-heading">FINE</div>
     <div class="panel-body" align="center"><h2>Scrivi una parola chiave per il problema segnalato</h2></div>
 </div>
 </div>
@@ -9,7 +10,11 @@
   <p>Indicare un termine che descriva il problema</p>
   <div class="row">
     <div class="col-md-6">
-        <%= text_field_tag 'keyword', nil, class: 'form-control', placeholder: "keyword", maxlength: 10, rows: 3, cols: 25 %>
+        <form>
+            <%= text_area_tag 'keyword', nil, class: 'form-control', placeholder: "keyword", maxlength: 10, rows: 3, cols: 25 %>
+            <strong><span id="rchars">10</span></strong> caratteri rimanenti           
+        </form>
+
        <!--<textarea class="form-control" rows="3" placeholder="keyword" name="answer18_note" ></textarea> -->
     </div>
 </div>
