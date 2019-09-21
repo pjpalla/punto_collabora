@@ -262,7 +262,7 @@ h1.home_title{
 }
 
 #intro1, #intro2, #intro3 {
-    width: 280px;
+    width: 300px;
 }
 
 #advice_arrow{
@@ -302,10 +302,62 @@ h1.home_title{
 .panel-warning>.panel-heading{
     background-color: #f0ad4e;
     color: white;
+    text-align: center;
 }
 
 .panel-success>.panel-heading{
+    //background-color: rgb(67, 67, 72);
     background-color: #5cb85c;
     color: white;
+    text-align: center;
+}
+
+.panel-success>.panel-heading.advice_stat1{
+    background-color: rgb(67, 67, 72);
+}
+
+.panel-success>.panel-heading.advice_stat2{
+    background-color: rgb(124, 181, 236);
+}
+
+.panel-danger>.panel-heading{
+
+    text-align: center;
+}
+
+.row{
+    padding-left: 15px;
+}
+
+.advices{
     
+}
+
+.advices th{
+    background-color: #ffc107!important;
+}
+
+h1.advices{
+    width: auto;
+    margin-left: 15px;
+}
+
+.filling{
+    background: #aa033b;
+}
+
+#list_button{
+    color: #fff;
+    background-color: #c9302c;
+    background-image: none;
+    border-color: #ac2925;
+    float: right;
+}
+
+.highcharts-tooltip h3 {
+  margin: 0.3em 0;
+} 
+
+#menu{
+    margin-right: 50px;
 }

@@ -1,6 +1,9 @@
 <%#= javascript_include_tag 'char_limit' %>
+<%# session.keys().each do |k, v|%>
+    <%#= "#{k}: #{session[k]}" %> <br/>
+<%# end %>    
 <div class="row">
-  <div class="panel panel-<%=session[:choice]%>">
+  <div class="panel panel-<%=session[:color_selection]%>">
     <div class="panel-heading">FINE</div>
     <div class="panel-body" align="center"><h2>Scrivi una parola chiave per il problema segnalato</h2></div>
 </div>

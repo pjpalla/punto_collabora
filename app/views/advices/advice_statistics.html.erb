@@ -1,0 +1,93 @@
+<div class="jumbotron text-center">
+    <h1></b>Analisi dei dati raccolti</h1>
+    <!--<h4 class="stat">Approach change after the interviews</h4> -->
+</div>
+
+
+
+
+<div class="row">
+    <div class="panel panel-success col-md-6">
+        <div class="panel-heading advice_stat1">AMBITO</div>
+        <div class="panel-body">
+            <div>
+                <%= pie_chart(@choices, library: {title: "Ambito", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-success col-md-6">
+        <div class="panel-heading advice_stat2">TIPOLOGIA SEGNALAZIONI</div>
+        <div class="panel-body">
+            <div>
+                <%= pie_chart(@typologies, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="row">
+    <div class="panel panel-success col-md-6">
+        <div class="panel-heading advice_stat2">LUOGHI SEGNALATI</div>
+        <div class="panel-body">
+            <div>
+                <%= pie_chart(@places, library: {title: "Ambito", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-success col-md-6">
+        <div class="panel-heading advice_stat1">LUOGHI SEGNALATI PER PROVINCIA</div>
+        <div class="panel-body">
+            <div>
+                <%= bar_chart @places_by_province, stacked: true, library: {title: "Luoghi segnalati in ciascuna provincia"} %>
+                <%#= pie_chart(@typologies, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="row">
+    <div class="panel panel-success">
+        <div class="panel-heading advice_stat2">OGGETTO DELLE SEGNALAZIONI</div>
+        <div class="panel-body">
+            <div>
+                <%= pie_chart(@topics, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-success">
+        <div class="panel-heading advice_stat1">PROBLEMATICHE SEGNALATE</div>
+        <div class="panel-body">
+            <div>
+                <%= pie_chart(@problems, library: {title: "Ambito", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel panel-success">
+        <div class="panel-heading advice_stat2">SUGGERIMENTI FORNITI</div>
+        <div class="panel-body">
+            <div>
+                <%= pie_chart(@suggestions, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="row">
+    <div class="panel panel-success">
+        <div class="panel-heading advice_stat1">DISTRIBUZIONE KEYWORD</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <%= high_chart("some_id", @chart) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+ 

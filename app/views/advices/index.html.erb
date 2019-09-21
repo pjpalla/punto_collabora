@@ -1,4 +1,54 @@
-<p id="notice"><%= notice %></p>
+<div class=well>
+    <div class="digg_pagination"%>
+        <!--<div class="page_info">
+            <%#= page_entries_info @advice_details %>    
+        </div> -->
+        <%=will_paginate @advice_details, :container => false %>
+    </div>
+</div>
+
+
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+        <p id="notice"><%= notice %></p>
+        <h1 class='advices'><span class="homeh1color1">E</span>lenco <span class="homeh1color1">S</span>uggerimenti - <span class="homeh1color1">P</span>roblematiche</h1>
+      
+                  
+        <%# end %>
+        <table class="advices table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Codice</th>
+              <th>Tipologia</th>
+              <th>Ambito</th>
+              <!--<th></th> -->
+              <th class='icon'><i class="fa fa-eye fa-lg" aria-hidden="true"></i></th> 
+              <!--<th class='icon'><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></th> -->
+              <th class='icon'><i class="fa fa-eraser fa-lg" aria-hidden="true"></i></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @advice_details.each do |ad| %>
+              <tr>
+                <!--<td><%#= survey.card %></td> -->
+                <td><%= ad.aid %></td>
+                <td><%= ad.typology%></td>
+                <td><%= ad.choice%></td>
+                <td><%= link_to 'Show', advice_path(ad) %></td>
+                <!--<td><%#= link_to 'Edit', edit_advice_path(ad) %></td> -->
+                <td><%= link_to 'Rimuovi', @advice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
+<br>
+
+
+
+<!--<p id="notice"><%#= notice %></p>
 
 <h1>Listing Advices</h1>
 
@@ -11,17 +61,17 @@
   </thead>
 
   <tbody>
-    <% @advices.each do |advice| %>
+    <%# @advices.each do |advice| %>
       <tr>
-        <td><%= advice.uid %></td>
-        <td><%= link_to 'Show', advice %></td>
-        <td><%= link_to 'Edit', edit_advice_path(advice) %></td>
-        <td><%= link_to 'Destroy', advice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= advice.uid %></td>
+        <td><%#= link_to 'Show', advice %></td>
+        <td><%#= link_to 'Edit', edit_advice_path(advice) %></td>
+        <td><#%= link_to 'Destroy', advice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Advice', new_advice_path %>
+<%#= link_to 'New Advice', new_advice_path %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   
   get 'advices/leave'
+  get 'advices/statistics', to: 'advices#advice_statistics'
   get 'intro', to: 'advices#intro'
   resources :advices
   
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
   
   resources :statistics
 
+  get 'pages/home'
   root 'pages#home'  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

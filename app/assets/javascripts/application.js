@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require_tree
 
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/highstock
+
 //= require chartkick
 $(document).ready(function() {
   setTimeout(function(){

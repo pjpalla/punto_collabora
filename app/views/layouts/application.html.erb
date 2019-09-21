@@ -8,8 +8,8 @@
   <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application' %>
 
-  <%= javascript_include_tag "https://www.google.com/jsapi" %>
-  <%#= javascript_include_tag "https://code.highcharts.com/highcharts.js" %>
+  <%#= javascript_include_tag "https://www.google.com/jsapi" %>
+  <%= javascript_include_tag "https://code.highcharts.com/highcharts.js" %>
   <%= javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" %>
   
   <!-- Latest compiled and minified CSS -->
@@ -59,25 +59,18 @@
                   <% end %>      
               </div>
               
-           <!-- <ul class="nav navbar-nav navbar-right">
-                <!--<li class="active"><a href="#">Home</a></li>-->
-               <!-- <li class="dropdown active">
-                  
-                   <a href="/pages/home" class="dropdown" data-toggle="dropdown">Home</a>
-                   <ul class="dropdown-menu">
-                     <li><%#=link_to "Intervista", surveys_path %></li>
-                     <li><%#= link_to "Analisi degli Intervistati", users_path %></li>
-                     <li><%#= link_to "Quesiti", questions_path %></li>
-                     <li><%#= link_to "Analisi degli indicatori", statistics_path %></li> 
-                     <li><%#= link_to "Analisi delle problematiche", statistics_drugs_path %></li>
-                     <li><%#= link_to "Analisi aggregata delle problematiche", statistics_aggregated_drugs_path %></li>                     
-                   </ul>
-                </li>
-                <li><a href="#">About</a></li>                
-                <li><a href="#">Contact us</a></li>
-                <%#= link_to "Log In", "#", class: "btn btn-primary navbar-btn" %>
-
-            </ul> -->
+                <% if current_member %>
+                <ul class="nav navbar-nav navbar-right">
+                <!--<li class="active"><a href="#">MENU</a></li> -->
+                <li class="dropdown active">
+                  <a id="menu" href="/pages/home" class="dropdown" data-toggle="dropdown">Menu</a>          
+                       <ul class="dropdown-menu">
+                         <li><%=link_to "Dati Raccolti", advices_path %></li>
+                         <li><%= link_to "Analisi dei Risultati", advices_statistics_path %></li>
+                       </ul>
+                    </li>
+                 </ul>
+                <% end %> 
           </div>
      </div>  
 

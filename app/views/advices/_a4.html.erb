@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="panel panel-<%=session[:choice]%>">
+  <div class="panel panel-<%=session[:color_selection]%>">
     <div class="panel-heading"><%= "STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
     <div class="panel-body" align="center"><h2>Seleziona che cosa riguarda</h2></div>
 </div>
 </div>
 <div class="row">
  <div class="container">
-  <p>Specificare l'oggetto della problematica tra quelle di seguito riportate</p>
+  <p>Specificare l'oggetto della segnalazione tra quelle di seguito riportate</p>
 
   <form>
     <div class="checkbox">

@@ -24,6 +24,10 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'chartkick', '2.0.0'
 # Use will_paginate for pagination of output elements
 gem 'will_paginate', '~> 3.1.0'
+# Use lazy highchart to dispaly beautyful graphs
+gem 'lazy_high_charts'
+
+
 
 
 # Use jquery as the JavaScript library

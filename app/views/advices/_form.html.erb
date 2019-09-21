@@ -1,5 +1,5 @@
 <%#= params.inspect %>
-<%= form_for(@advice, :html => {class: "form-group"}, :choice => @choice) do |f| %>
+<%= form_for(@advice, :html => {class: "form-group"}, :color_selection => @selection) do |f| %>
   <% if @advice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@advice.errors.count, "error") %> prohibited this advice from being saved:</h2>
@@ -13,18 +13,13 @@
   <% end %>
   
   <div class="jumbotron">
-  <div class="container">
+  <!--<div class="container">-->
  
     <ul class="pagination">
           <% unless @advice.first_step?%>
-            <%= button_tag(type: "submit", :id => "back_cmd", :name => "back_button", class: "btn btn-lg btn-primary") do %>
-                <i class="fa fa-arrow-circle-left"></i><br/>
-            <% end %>
-          <%#= link_to '<button class="btn btn-lg btn-danger">
-              <i class="fa fa-arrow-circle-left"></i><br/>
-                  <!--<i class="fa fa-user fa-5x"></i><br/>-->
-              </button>'.html_safe, f.submit(" ", :id => "back_cmd", :name => "back_button") %>
-          <!-- <li><a><%#= f.submit "<<", :id => "back_cmd", :name => "back_button" %></a></li> -->
+              <%= button_tag(type: "submit", :id => "back_cmd", :name => "back_button", class: "btn btn-lg btn-primary") do %>
+                  <i class="fa fa-arrow-circle-left"></i><br/>
+              <% end %>
           <% end %> 
           <% unless @advice.last_step? %>
               <%#= link_to "Exit", advices_leave_path %>
@@ -34,17 +29,7 @@
               <%= button_tag(type: "submit", class: "btn btn-lg btn-primary") do %>
                   <i class="fa fa-arrow-circle-right"></i><br/>
               <% end %>
-               <%#= link_to '<button id="advice_arrow" class="btn btn-lg btn-danger">
-              # <i class="fas fa-sign-out-alt"></i><br/>
-              #     <!--<i class="fa fa-user fa-5x"></i><br/>-->
-              # </button>'.html_safe, advices_leave_path %>  
-              <%#= link_to '<button id="advice_arrow" class="btn btn-lg btn-danger">
-                            <i class="fa fa-arrow-circle-right"></i><br/>
-                                <!--<i class="fa fa-user fa-5x"></i><br/>-->
-                            </button>'.html_safe, f.submit %>  
-              
-              
-              <!--<li><a><%#= f.submit ">>"  %></a></li> -->
+
           <% else %>
               <%= link_to advices_leave_path, id: "advice_arrow", class: "btn btn-lg btn-danger active" do %>
                   <i class="fas fa-sign-out-alt"> Esci</i><br/>
@@ -55,19 +40,10 @@
           <% end %>
       </ul>
 
-    <%= render "#{@advice.current_step}", :f => f, :choice => @choice %>    
-  </div><br/>
+    <%= render "#{@advice.current_step}", :f => f, :color_selection => @selection %>    
+  <!--</div><br/> -->
 </div>
 
-
-  
 <% end %>
 
-  <!--<div class="field">
-    <%#= f.label :uid %><br>
-    <%#= f.number_field :uid %>
-  </div>
-  <div class="actions">
-    <%#= f.submit %>
-  </div>
-<%# end %> -->
+ 

@@ -1,13 +1,14 @@
 class AdvicesController < ApplicationController
   include AdvicesHelper
-  skip_before_action :authenticate_member!
+  skip_before_action :authenticate_member!, except: [:advice_statistics, :index, :show]
   before_action :set_advice, only: [:show, :edit, :update, :destroy], except: [:intro]
   
 
   # GET /advices
   # GET /advices.json
   def index
-    @advices = Advice.all
+     @advice_details = AdviceDetail.all.paginate(:page => params[:page], :per_page => 3)
+     #@advices = Advice.all. paginate(:page => params[:page], :per_page => 3).order('id ASC')
   end
   
   def intro
@@ -17,13 +18,16 @@ class AdvicesController < ApplicationController
   # GET /advices/1
   # GET /advices/1.json
   def show
+    @advice = Advice.find(params[:id])
+    @advice_details = AdviceDetail.find_by_aid(@advice.id)
   end
 
   # GET /advices/new
   def new
-    @choice = get_choice(params[:choice])
-    session[:choice] = @choice unless @choice.empty?
-    logger.info "choice inside new: #{session[:choice]}"
+    @selection = get_choice(params[:selection])
+    session[:choice] = params[:selection]
+    session[:color_selection] = @selection unless @selection.empty?
+    logger.info "selection inside new: #{session[:color_selection]}"
     session[:advice_params] ||= {}
     @advice = Advice.new(session[:advice_params])
     @advice.current_step = session[:advice_step]
@@ -37,27 +41,44 @@ class AdvicesController < ApplicationController
   # POST /advices
   # POST /advices.json
   def create
-    logger.info "choice inside create: #{session[:choice]}"
-    logger.info "session[:advice01] = #{session[:advice01]}"
     session[:advice_params].deep_merge!(params[:advice]) if params[:advice]
     self.set_session
+    
+    logger.info "color_selection inside create: #{session[:color_selection]}"
+    logger.info "session[:advice01] = #{session[:advice01]}"
+    logger.info "choice inside create: #{session[:choice]}"
+    
     @advice = Advice.new(session[:advice_params])
     @advice.current_step = session[:advice_step]
+
     if params[:back_button]
         @advice.previous_step
     elsif @advice.last_step?
-      session_cleaner
+        ActiveRecord::Base.transaction do
+           @advice.save
+           
+           aid = @advice.id
+           logger.debug "aid: #{aid}"
+           advice_details = create_advice_details(aid, session)
+           logger.debug "advice_details: #{advice_details.inspect}"
+           advice_details.save 
+           session_cleaner
+        end
       
     else 
       @advice.next_step
     end
     session[:advice_step] = @advice.current_step    
     if @advice.new_record?
-      render "new", choice: session[:choice]
+      # session.keys().each do |k|
+      #   logger.info "#{k}: #{session[k]}"
+      # end  
+      render "new", color_selection: session[:color_selection]
+      
     else
       session[:advice_step] = session[:advice_params] = nil
-      flash[:notice] = "Advice correttamente inserito!"
-      redirect_to advice_path
+      flash[:notice] = "Grazie della collaborazione!"
+      redirect_to :controller => "pages", :action => "home"
       #redirect_to @survey
     end  
 
@@ -75,6 +96,8 @@ class AdvicesController < ApplicationController
   end
   
   def set_session
+    session[:color_selection] = params[:color_selection] if params[:color_selection]
+    session[:choice] = params[:selection] if params[:selection]
     session[:advice01] = params[:advice01] if params[:advice01]
     session[:advice02_a] = params[:advice02_a] if params[:advice02_a] #Ospedale
     session[:advice02_b] = params[:advice02_b] if params[:advice02_b] #Farmacia
@@ -89,6 +112,39 @@ class AdvicesController < ApplicationController
     session[:advice05_a] = params[:advice05_a] if params[:advice05_a] #Distribuzione presidi medici
     session[:advice05_b] = params[:advice05_b] if params[:advice05_b] #Sistemi di prenotazione
     session[:advice05_c] = params[:advice05_c] if params[:advice05_c] #Distribuzione di farmaci
+    session[:keyword] = params[:keyword] if params[:keyword]
+  end
+  
+  
+  def advice_statistics
+    @advice_details = AdviceDetail.all
+    ### Advice Statics ####
+    ### Ambito - farmaci, sistema sanitario, farmaci acquistati su internet
+    @choices = AdviceDetail.all.group(:choice).count(:choice)
+    @choices = change_key_case(@choices)
+    # choices = {}
+    # @choices.map{|k, v| choices[k.capitalize] = v}
+    # @choices = choices
+    ### Tipolagia di segnalazione
+    @typologies = AdviceDetail.all.group(:typology).count(:typology)
+    @typologies = change_key_case(@typologies)
+    ## Strutture segnalate ##
+    @places = AdviceDetail.all.pluck(:place)
+    @places = count_elements(@places)
+    @places = change_key_case(@places)
+    @places_by_province = get_place_by_province()
+    @topics = count_elements(AdviceDetail.all.pluck(:topic))
+    @topics = change_key_case(@topics)
+    problems = AdviceDetail.where(typology: "problema").pluck(:description)
+    problems = count_elements(problems)
+    @problems = change_key_case(problems)
+    
+    suggestions = AdviceDetail.where(typology: "esigenza/suggerimento").pluck(:description)
+    suggestions = count_elements(suggestions)
+    @suggestions = change_key_case(suggestions)
+    occurrences = AdviceDetail.all.group(:keyword).count
+    @chart = generate_bubble(occurrences)
+  
   end  
   
 
