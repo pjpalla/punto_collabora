@@ -175,7 +175,8 @@ class AdvicesController < ApplicationController
   
   def leave
     session_cleaner
-    redirect_to :controller => "pages", :action => "home" 
+    #redirect_to :controller => "pages", :action => "home" 
+    redirect_to root_path
   end  
 
 
