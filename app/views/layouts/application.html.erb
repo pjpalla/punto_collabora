@@ -26,13 +26,9 @@
   
   <%= csrf_meta_tags %>
   
-  
-  
-  
-  
-  
-  
 </head>
+
+<%#= debug params %>
 <body>
 <div class="navbar navbar-inverse navbar-static-top">
 
@@ -79,7 +75,7 @@
         <!--<div class="alert alert-danger" role="alert"><%#= alert unless alert.nil? %></div>
         <div class="alert alert-info" role="alert"><%#= notice unless notice.nil? %></div> -->
           <% flash.each do |key, value| %>
-                  <div class="<%= flash_class(key.to_sym) %>">
+                  <div id="<%= "thank_you" if params[:step] == 'final_step' %>" class="<%= flash_class(key.to_sym) %>">
                         <%= value %>
                   </div>
           <% end %>
