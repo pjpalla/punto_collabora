@@ -98,14 +98,23 @@ def count_elements(original_list)
     
     pp.each{|e| counts[e] += 1}
     counts
+    counts = change_key_case(counts)
+    counts
 end
 
+def get_places_by_choice(choice)
+    places = AdviceDetail.where(:choice => choice).pluck(:place)
+    places = count_elements(places)
+    places = change_key_case(places)
+    places
+end    
 
-def get_place_by_province()
-    provinces = AdviceDetail.all.distinct.pluck(:province)
+
+def get_place_by_province(choice)
+    provinces = AdviceDetail.where(:choice => choice).distinct.pluck(:province)
     stacked_data = []
     provinces.each do |p|
-       place_list = AdviceDetail.where(province: p).pluck(:place)
+       place_list = AdviceDetail.where(province: p, choice: choice).pluck(:place)
        places = count_elements(place_list)
        d = {:name => p, :data => places.map{|k, v| [k.capitalize, v]}}
        stacked_data.append(d)
@@ -126,6 +135,7 @@ def create_bubble_series(keyword_occurences)
         {x: rand(xmax), y: rand(ymax), z: v, keyword: k, percentuale: percentage}
 
     end
+    #binding.pry
     bubble_series
     
 end    
@@ -133,7 +143,7 @@ end
 def generate_bubble(occurrences)
    #bubble_series = [{x: 1, y: 2, z: 3}, {x: 4, y: 5, z: 6}]
    bubble_series = create_bubble_series(occurrences)
-   @chart = LazyHighCharts::HighChart.new('bubble') do |f|
+   mychart = LazyHighCharts::HighChart.new('bubble') do |f|
           f.title(text: 'Distribuzione delle keyword utilizzate')            
           f.chart(type: 'bubble', zoomType: 'xy', plotBorderWidth: 1) 
           f.xAxis [title: {text: 'Keywords'}]
@@ -157,7 +167,8 @@ def generate_bubble(occurrences)
              }
            }
          )
-    end 
+    end
+    mychart
 end    
     
 end    
