@@ -299,6 +299,11 @@ h1.home_title{
     border-color: #c9302c;
 }
 
+
+.panel-primary>.panel-heading{
+    text-align: center;
+}    
+
 .panel-warning>.panel-heading{
     background-color: #f0ad4e;
     color: white;
@@ -361,3 +366,24 @@ h1.advices{
 #menu{
     margin-right: 50px;
 }
+
+#thank_you{
+    height: 150px;
+    font-size: 40px;
+    padding-top: 60px;
+    text-align: center;
+}
+
+ div.dropdown.bootstrap-select {
+   width: 250px; 
+}
+
+.general_warning{
+    padding: 10px;
+}
+
+/*div.row.choice{
+  border-style: solid;
+  border-color: coral;
+  border-width: 1px;
+} */
