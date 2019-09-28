@@ -1,46 +1,137 @@
 <div class="row">
   <div class="panel panel-<%=session[:color_selection]%>">
-    <div class="panel-heading"><%= "STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
-    <div class="panel-body" align="center"><h2>Seleziona le voci che meglio descrivono il <%= session[:advice01] == "Problema" ? "problema" : "suggerimento" %></h2></div>
+    <div class="panel-heading"><%= extract_choice(session[:choice]).upcase + " - STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
+    <div class="panel-body" align="center"><h2>Descrivi meglio il <%= session[:advice01] == "Problema" ? "problema" : "suggerimento o l'esigenza" %></h2></div>
 </div>
 </div>
 <div class="row">
  <div class="container">
   <p>Indicare le voci che meglio caratterizzano il <%= session[:advice01] == "Problema" ? "problema segnalato" : "suggerimento fornito" %></p>
-
-<% if session[:advice01] == "Problema" %>
-  <form>
-    <div class="checkbox">
-      <input type="hidden" name="advice05_a" value="">      
-      <label><input type="checkbox" name = "advice05_a" value="Malfunzionamento" <%= 'checked'  if session[:advice05_a] == "Malfunzionamento" %>>Malfunzionamento</label>
-    </div>
-    <div class="checkbox">
-      <input type="hidden" name="advice05_b" value="">            
-      <label><input type="checkbox" name = "advice05_b" value="Materiale insufficiente per quantità" <%= 'checked'  if session[:advice05_b] == "Materiale insufficiente per quantità" %>>Materiale insufficiente per quantità</label>
-    </div>
-    <div class="checkbox">
-      <input type="hidden" name="advice05_c" value="">            
-      <label><input type="checkbox" name = "advice05_c" value="Materiale insufficiente per qualità" <%= 'checked'  if session[:advice05_c] == "Materiale insufficiente per qualità" %>>Materiale insufficiente per qualità</label>
-    </div>
-  </form>
-<% else %>
-  <form>
-    <div class="checkbox">
-      <input type="hidden" name="advice05_a" value="">      
-      <label><input type="checkbox" name = "advice05_a" value="Più dialogo / ascolto" <%= 'checked'  if session[:advice05_a] == "Più dialogo / ascolto" %>>Più dialogo / ascolto</label>
-    </div>
-    <div class="checkbox">
-      <input type="hidden" name="advice05_b" value="">            
-      <label><input type="checkbox" name = "advice05_b" value="Più informazione" <%= 'checked'  if session[:advice05_b] == "Più informazione" %>>Più informazione</label>
-    </div>
-    <div class="checkbox">
-      <input type="hidden" name="advice05_c" value="">            
-      <label><input type="checkbox" name = "advice05_c" value="Differenziazione della quantità di materiale distribuito" <%= 'checked'  if session[:advice05_c] == "Differenziazione della quantità di materiale distribuito" %>>Differenziazione della quantità di materiale distribuito</label>
-    </div>
-  </form>
-<% end %>
+  <% if session[:choice] == "drugs" %>
+      <% if session[:advice01] == "Problema" %>
+            <form>
+              <div class="checkbox">
+                <input type="hidden" name="advice05_a" value="">      
+                <label><input type="checkbox" name = "advice05_a" value="Difficoltà nell’utilizzo" <%= 'checked'  if session[:advice05_a] == "Difficoltà nell’utilizzo" %>>Difficoltà nell’utilizzo</label>
+              </div>
+              <div class="checkbox">
+                <input type="hidden" name="advice05_b" value="">            
+                <label><input type="checkbox" name = "advice05_b" value="Difficoltà di lettura del foglio illustrativo" <%= 'checked'  if session[:advice05_b] == "Difficoltà di lettura del foglio illustrativo" %>>Difficoltà di lettura del foglio illustrativo</label>
+              </div>
+              <div class="general_warning alert-danger">
+                 <div class="checkbox">
+                    <input type="hidden" name="advice05_c" value="">            
+                    <label><input type="checkbox" name = "advice05_c" value="Effetti indesiderati" <%= 'checked'  if session[:advice05_c] == "Effetti indesiderati" %>>Effetti indesiderati*</label>
+                </div>
+                <div class="checkbox">
+                    <input type="hidden" name="advice05_d" value="">            
+                    <label><input type="checkbox" name = "advice05_d" value="Inequivalenza" <%= 'checked'  if session[:advice05_d] == "Inequivalenza" %>>Inequivalenza*</label>
+                </div>
+                <div class="checkbox">
+                    <input type="hidden" name="advice05_e" value="">            
+                    <label><input type="checkbox" name = "advice05_e" value="Inefficacia" <%= 'checked'  if session[:advice05_e] == "Inefficacia" %>>Inefficacia*</label>
+                </div>
+                <p>
+                  * Parlane col medico o il farmacista che ti ha prescritto o consigliato il farmaco.
+                </p>
+              </div>
+            </form>
+        <% else %>
+              <form>
+                <div class="checkbox">
+                  <input type="hidden" name="advice05_a" value="">      
+                  <label><input type="checkbox" name = "advice05_a" value="Riduzione formato dei farmaci / acquisto spacchettato" <%= 'checked'  if session[:advice05_a] == "Riduzione formato dei farmaci / acquisto spacchettato" %>>Riduzione formato dei farmaci / acquisto spacchettato</label>
+                </div>
+                <div class="checkbox">
+                  <input type="hidden" name="advice05_b" value="">            
+                  <label><input type="checkbox" name = "advice05_b" value="Un punto dove portare i farmaci non utilizzati (non scaduti)" <%= 'checked'  if session[:advice05_b] == "Un punto dove portare i farmaci non utilizzati (non scaduti)" %>>Un punto dove portare i farmaci non utilizzati (non scaduti)</label>
+                </div>
+                <div class="checkbox">
+                  <input type="hidden" name="advice05_c" value="">            
+                  <label><input type="checkbox" name = "advice05_c" value="Rendere più chiare le interazioni tra farmaci" <%= 'checked'  if session[:advice05_c] == "Rendere più chiare le interazioni tra farmaci" %>>Rendere più chiare le interazioni tra farmaci</label>
+                </div>
+            </form>
+        <% end %>
+  <% elsif session[:choice] == "health system" %>
+      <% if session[:advice01] == "Problema" %>
+          <form>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_a" value="">      
+              <label><input type="checkbox" name = "advice05_a" value="Malfunzionamento" <%= 'checked'  if session[:advice05_a] == "Malfunzionamento" %>>Malfunzionamento</label>
+            </div>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_b" value="">            
+              <label><input type="checkbox" name = "advice05_b" value="Materiale insufficiente per quantità" <%= 'checked'  if session[:advice05_b] == "Materiale insufficiente per quantità" %>>Materiale insufficiente per quantità</label>
+            </div>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_c" value="">            
+              <label><input type="checkbox" name = "advice05_c" value="Materiale insufficiente per qualità" <%= 'checked'  if session[:advice05_c] == "Materiale insufficiente per qualità" %>>Materiale insufficiente per qualità</label>
+            </div>
+          </form>
+      <% else %>
+          <form>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_a" value="">      
+              <label><input type="checkbox" name = "advice05_a" value="Più dialogo / ascolto" <%= 'checked'  if session[:advice05_a] == "Più dialogo / ascolto" %>>Più dialogo / ascolto</label>
+            </div>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_b" value="">            
+              <label><input type="checkbox" name = "advice05_b" value="Più informazione" <%= 'checked'  if session[:advice05_b] == "Più informazione" %>>Più informazione</label>
+            </div>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_c" value="">            
+              <label><input type="checkbox" name = "advice05_c" value="Differenziazione della quantità di materiale distribuito" <%= 'checked'  if session[:advice05_c] == "Differenziazione della quantità di materiale distribuito" %>>Differenziazione della quantità di materiale distribuito</label>
+            </div>
+          </form>      
+     <% end %>
+     
+  <% elsif session[:choice] == "shopping" %>
+      <% if session[:advice01] == "Problema" %>
+          <form>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_a" value="">      
+              <label><input type="checkbox" name = "advice05_a" value="Difficoltà nell’utilizzo" <%= 'checked'  if session[:advice05_a] == "Difficoltà nell’utilizzo" %>>Difficoltà nell’utilizzo</label>
+            </div>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_b" value="">            
+              <label><input type="checkbox" name = "advice05_b" value="Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)" <%= 'checked'  if session[:advice05_b] == "Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)" %>>Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)</label>
+            </div>
+              <div class="general_warning alert-danger">
+                 <div class="checkbox">
+                    <input type="hidden" name="advice05_c" value="">            
+                    <label><input type="checkbox" name = "advice05_c" value="Effetti indesiderati" <%= 'checked'  if session[:advice05_c] == "Effetti indesiderati" %>>Effetti indesiderati*</label>
+                </div>
+                <div class="checkbox">
+                    <input type="hidden" name="advice05_d" value="">            
+                    <label><input type="checkbox" name = "advice05_d" value="Inequivalenza" <%= 'checked'  if session[:advice05_d] == "Inequivalenza" %>>Inequivalenza*</label>
+                </div>
+                <div class="checkbox">
+                    <input type="hidden" name="advice05_e" value="">            
+                    <label><input type="checkbox" name = "advice05_e" value="Inefficacia" <%= 'checked'  if session[:advice05_e] == "Inefficacia" %>>Inefficacia*</label>
+                </div>
+                <p>
+                  * Parlane col medico o il farmacista che ti ha prescritto o consigliato il farmaco.
+                </p>
+              </div>            
+          </form>
+      <% else %> <!-- Da modificare in relazione ai requisiti -->
+          <form>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_a" value="">      
+              <label><input type="checkbox" name = "advice05_a" value="Più dialogo / ascolto" <%= 'checked'  if session[:advice05_a] == "Più dialogo / ascolto" %>>Più dialogo / ascolto</label>
+            </div>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_b" value="">            
+              <label><input type="checkbox" name = "advice05_b" value="Più informazione" <%= 'checked'  if session[:advice05_b] == "Più informazione" %>>Più informazione</label>
+            </div>
+            <div class="checkbox">
+              <input type="hidden" name="advice05_c" value="">            
+              <label><input type="checkbox" name = "advice05_c" value="Differenziazione della quantità di materiale distribuito" <%= 'checked'  if session[:advice05_c] == "Differenziazione della quantità di materiale distribuito" %>>Differenziazione della quantità di materiale distribuito</label>
+            </div>
+          </form>      
+     <% end %>     
+ <% end %>
 </div>
-
 </div> 
  
  

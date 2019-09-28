@@ -1,12 +1,13 @@
 <div class="row">
   <div class="panel panel-<%=session[:color_selection]%>">
-    <div class="panel-heading"><%= "STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
-    <div class="panel-body" align="center"><h2>Seleziona la provincia coinvolta</h2></div>
+    <div class="panel-heading"><%= extract_choice(session[:choice]).upcase + " - STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
+    <div class="panel-body" align="center"><h2>Qual è la provincia coinvolta?</h2></div>
 </div>
 </div>
 <div class="row">
  <div class="container">
-  <p>Indicare la provincia in cui è situata la struttura segnalata in precedenza</p>
+  <% text_message = session[:choice] == "shopping" ? " ti trovi" : " è situata la struttura segnalata in precedenza" %>     
+  <p>Indicare la provincia in cui <%= text_message%></p>
 
 <% options = ["", "Città metropolitana di Cagliari", "Sud Sardegna", "Nuoro", "Oristano", "Sassari"] %>
 <%= select_tag "advice03", options_for_select(options, session[:advice03]), multiple: false, class: "selectpicker" %><br/><br/>
