@@ -21,7 +21,7 @@
 //= require chartkick
 $(document).ready(function() {
   setTimeout(function(){
-    $('.alert').fadeOut(800);
+    $('.alert').fadeOut(2000);
   }, 1000);
   
   var divs = $('div[id^="content-"]').hide(),
