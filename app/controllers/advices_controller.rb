@@ -77,8 +77,8 @@ class AdvicesController < ApplicationController
       
     else
       session[:advice_step] = session[:advice_params] = nil
-      flash[:notice] = "Grazie della collaborazione!"
-      redirect_to :controller => "pages", :action => "home"
+      flash[:success] = "Grazie della collaborazione!"
+      redirect_to root_path(:step => "final_step")
       #redirect_to @survey
     end  
 
@@ -112,6 +112,8 @@ class AdvicesController < ApplicationController
     session[:advice05_a] = params[:advice05_a] if params[:advice05_a] #Distribuzione presidi medici
     session[:advice05_b] = params[:advice05_b] if params[:advice05_b] #Sistemi di prenotazione
     session[:advice05_c] = params[:advice05_c] if params[:advice05_c] #Distribuzione di farmaci
+    session[:advice05_d] = params[:advice05_d] if params[:advice05_d] # Farmaci Inequivalenza
+    session[:advice05_e] = params[:advice05_e] if params[:advice05_e] # Farmaci inefficacia
     session[:keyword] = params[:keyword] if params[:keyword]
   end
   
@@ -120,6 +122,7 @@ class AdvicesController < ApplicationController
     @advice_details = AdviceDetail.all
     ### Advice Statics ####
     ### Ambito - farmaci, sistema sanitario, farmaci acquistati su internet
+    @choice_alternatives = AdviceDetail.all.uniq.pluck(:choice)
     @choices = AdviceDetail.all.group(:choice).count(:choice)
     @choices = change_key_case(@choices)
     # choices = {}
@@ -129,21 +132,32 @@ class AdvicesController < ApplicationController
     @typologies = AdviceDetail.all.group(:typology).count(:typology)
     @typologies = change_key_case(@typologies)
     ## Strutture segnalate ##
-    @places = AdviceDetail.all.pluck(:place)
-    @places = count_elements(@places)
-    @places = change_key_case(@places)
-    @places_by_province = get_place_by_province()
-    @topics = count_elements(AdviceDetail.all.pluck(:topic))
-    @topics = change_key_case(@topics)
-    problems = AdviceDetail.where(typology: "problema").pluck(:description)
-    problems = count_elements(problems)
-    @problems = change_key_case(problems)
+    ### businsess logic moved to the view
+    # @places = AdviceDetail.all.pluck(:place)
+    # @places = count_elements(@places)
+    # @places = change_key_case(@places)
+    #@places_by_province = get_place_by_province()
+    ### Oggetto Segnalazioni ###
+    # @topics = count_elements(AdviceDetail.all.pluck(:topic))
+    # @topics = change_key_case(@topics)
+    ### Problematiche ###
+    # problems = AdviceDetail.where(typology: "problema").pluck(:description)
+    # problems = count_elements(problems)
+    # @problems = change_key_case(problems)
     
-    suggestions = AdviceDetail.where(typology: "esigenza/suggerimento").pluck(:description)
-    suggestions = count_elements(suggestions)
-    @suggestions = change_key_case(suggestions)
-    occurrences = AdviceDetail.all.group(:keyword).count
-    @chart = generate_bubble(occurrences)
+    ## Suggerimenti ###
+    # suggestions = AdviceDetail.where(typology: "esigenza/suggerimento").pluck(:description)
+    # suggestions = count_elements(suggestions)
+    # @suggestions = change_key_case(suggestions)
+    occurrences1 = AdviceDetail.where(:choice => "farmaci").group(:keyword).count
+    @chart1 = generate_bubble(occurrences1)
+    
+    occurrences2 = AdviceDetail.where(:choice => "farmaci acquistati su internet").group(:keyword).count
+    @chart2 = generate_bubble(occurrences2)
+    
+    occurrences3 = AdviceDetail.where(:choice => "sistema sanitario").group(:keyword).count
+    @chart3 = generate_bubble(occurrences3)
+    
   
   end  
   
