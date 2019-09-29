@@ -90,6 +90,10 @@
 
 <% @choice_alternatives.each do |ch| %>
     <% problems = count_elements(AdviceDetail.where(choice: ch, typology: "problema").pluck(:description)) %>
+    <% if ch == "farmaci acquistati su internet" %>
+        <!-- Here we rename the key to have a better visualization -->
+        <% problems["Il prodotto alla vista si presenta diverso/strano rispetto alle attese"] = problems.delete("Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)") %>
+    <% end %>    
     <% suggestions = count_elements(AdviceDetail.where(choice: ch, typology: "esigenza/suggerimento").pluck(:description)) %>
     <div class="row">
         <div class="panel panel-success">
