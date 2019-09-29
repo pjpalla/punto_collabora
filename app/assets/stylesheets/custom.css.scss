@@ -382,6 +382,15 @@ h1.advices{
     padding: 10px;
 }
 
+.general_warning > p{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.general_warning p > a{
+    color: #0000EE;
+}
+
 /*div.row.choice{
   border-style: solid;
   border-color: coral;
