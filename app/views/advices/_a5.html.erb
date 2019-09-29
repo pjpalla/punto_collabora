@@ -32,7 +32,7 @@
                     <label><input type="checkbox" name = "advice05_e" value="Inefficacia" <%= 'checked'  if session[:advice05_e] == "Inefficacia" %>>Inefficacia*</label>
                 </div>
                 <p>
-                  * Parlane col medico o il farmacista che ti ha prescritto o consigliato il farmaco.
+                  * Parlane subito col medico o il farmacista che ti ha prescritto o consigliato il farmaco.
                 </p>
               </div>
             </form>
@@ -92,27 +92,38 @@
               <input type="hidden" name="advice05_a" value="">      
               <label><input type="checkbox" name = "advice05_a" value="Difficoltà nell’utilizzo" <%= 'checked'  if session[:advice05_a] == "Difficoltà nell’utilizzo" %>>Difficoltà nell’utilizzo</label>
             </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_b" value="">            
-              <label><input type="checkbox" name = "advice05_b" value="Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)" <%= 'checked'  if session[:advice05_b] == "Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)" %>>Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)</label>
-            </div>
-              <div class="general_warning alert-danger">
-                 <div class="checkbox">
+             <div class="general_warning alert-danger">
+                <div class="checkbox">
+                  <input type="hidden" name="advice05_b" value="">            
+                  <label><input type="checkbox" name = "advice05_b" value="Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)" <%= 'checked'  if session[:advice05_b] == "Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)" %>>Il prodotto alla vista si presenta diverso/strano rispetto alle attese (nella scatola e/o nel contenuto)*</label>
+                </div>
+             </div>
+             <div class="general_warning alert-info">          
+                <div class="checkbox">
                     <input type="hidden" name="advice05_c" value="">            
-                    <label><input type="checkbox" name = "advice05_c" value="Effetti indesiderati" <%= 'checked'  if session[:advice05_c] == "Effetti indesiderati" %>>Effetti indesiderati*</label>
+                    <label><input type="checkbox" name = "advice05_c" value="Effetti indesiderati" <%= 'checked'  if session[:advice05_c] == "Effetti indesiderati" %>>Effetti indesiderati**</label>
                 </div>
                 <div class="checkbox">
                     <input type="hidden" name="advice05_d" value="">            
-                    <label><input type="checkbox" name = "advice05_d" value="Inequivalenza" <%= 'checked'  if session[:advice05_d] == "Inequivalenza" %>>Inequivalenza*</label>
+                    <label><input type="checkbox" name = "advice05_d" value="Inequivalenza" <%= 'checked'  if session[:advice05_d] == "Inequivalenza" %>>Inequivalenza**</label>
                 </div>
                 <div class="checkbox">
                     <input type="hidden" name="advice05_e" value="">            
-                    <label><input type="checkbox" name = "advice05_e" value="Inefficacia" <%= 'checked'  if session[:advice05_e] == "Inefficacia" %>>Inefficacia*</label>
+                    <label><input type="checkbox" name = "advice05_e" value="Inefficacia" <%= 'checked'  if session[:advice05_e] == "Inefficacia" %>>Inefficacia**</label>
                 </div>
-                <p>
-                  * Parlane col medico o il farmacista che ti ha prescritto o consigliato il farmaco.
-                </p>
-              </div>            
+                </div>
+                <div class="general_warning alert-danger">
+                    <p>
+                      * Fai subito una segnalazione all'indirizzo <a href="mailto: medicrime@aifa.gov.it">medicrime@aifa.gov.it</a>
+                    </p>
+                </div>
+                <div class="general_warning alert-info">
+                    <p>
+                      ** Parlane subito col medico o il farmacista che ti ha prescritto o consigliato il farmaco.  
+                    </p>                  
+                </div>
+
+            
           </form>
       <% else %> <!-- Da modificare in relazione ai requisiti -->
           <form>
