@@ -57,7 +57,7 @@ group :development, :test do
   #gem 'pry-debugger'
   gem 'pry-doc'
   # Use postgresql as the database for Active Record
-  gem 'pg', ' 0.15'
+  # gem 'pg', ' 0.15'
   #gem 'pry-rails'
 end
 
@@ -73,7 +73,7 @@ group :development do
 end
 
 group :production do
-  # Use postgresql as the database for Active Record
+  # Use postgresql as the database for production
   gem 'pg', ' 0.15'
   gem 'rails_12factor'
   gem 'log4r'
