@@ -1,13 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-<<<<<<< HEAD
   #Secret Key
   config.secret_key_base = ENV['SECRET_KEY_BASE']
-=======
-  # Secret key generation for production
-  config.secret_key_base = ENV["SECRET_KEY_BASE"]
->>>>>>> dev
   # Code is not reloaded between requests.
   config.cache_classes = true
 
