@@ -41,6 +41,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '4.2.0'
 
+# Logging library
+gem 'log4r'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -68,15 +72,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   
-  # Logging library
-  gem 'log4r'
 end
 
 group :production do
   # Use postgresql as the database for production
   gem 'pg', ' 0.15'
   gem 'rails_12factor'
-  gem 'log4r'
-  
 end
 
