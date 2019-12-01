@@ -17,11 +17,12 @@ Rails.application.routes.draw do
   end  
 #  get 'pages/home'
 
- 
-  devise_for :members
+  
+  devise_for :members, :controllers => {:registrations => "members"}
   resources :members 
   
   get 'questions/index'
+  
 
   
 

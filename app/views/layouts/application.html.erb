@@ -68,6 +68,10 @@
                        <ul class="dropdown-menu">
                          <li><%=link_to "Dati Raccolti", advices_path %></li>
                          <li><%= link_to "Analisi dei Risultati", advices_statistics_path %></li>
+                         <% if current_member.email == "palla.pg@gmail.com"%>
+                             <li><%=link_to "Registrazione Utenti", new_member_registration_path %></li>
+                             <li><%= link_to "Modifica Utenti", edit_member_registration_path %></li>
+                         <% end %>      
                        </ul>
                     </li>
                  </ul>
@@ -86,7 +90,7 @@
           <% end %>
           <%= yield %>  
     </div>
-    <div><%= current_member %></div>
+    <!--<div><%#= current_member %></div> -->
 <%= render partial: "footer" %>
 </body>
 
