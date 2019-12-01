@@ -9,7 +9,7 @@ gem 'json', '>= 1.8.3'
 # Use docx to parse doc files
 gem 'docx', '0.2.07'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 5.0'
 # Use bootstrap library for styles
 gem 'bootstrap-sass', '>= 3.3.1'
 # Use font awesome library for icons
@@ -39,7 +39,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'devise', '4.2.0'
+gem 'devise', '4.4.0'
 
 # Logging library
 gem 'log4r'
