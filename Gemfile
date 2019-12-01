@@ -21,7 +21,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use ChartKik for diagrams
-gem 'chartkick', '2.0.0'
+gem 'chartkick', '3.2.0'
 # Use will_paginate for pagination of output elements
 gem 'will_paginate', '~> 3.1.0'
 # Use lazy highchart to dispaly beautyful graphs
