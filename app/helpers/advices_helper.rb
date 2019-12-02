@@ -84,7 +84,11 @@ end
 
 def change_key_case(dictionary)
     new_dict =  {}
-    dictionary.map{|k, v| new_dict[k.capitalize] = v}
+    dictionary.map do |k, v|
+        unless k.nil?
+            new_dict[k.capitalize] = v
+        end
+    end    
     return new_dict
 end
 

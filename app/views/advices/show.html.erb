@@ -3,37 +3,37 @@
     <p id="notice"><%= notice %></p>
    
     <div class="container">
-    <h1 class='advices'><span class="homeh1color1">T</span>ipologia: <span class="homeh1color1"><%=@advice_details.typology[0].upcase%></span><%=@advice_details.typology[1, @advice_details.typology.length] %>
-     <%= link_to advices_path, id: "list_button", class: "btn btn-lg btn-danger active" do %>
-                  <i class="fas fa-bars">  Torna all'elenco</i><br/>
-    <% end %>
-    </h1>
-    </div>
-    <br/>
-    <div class="container">
-       
-      <% @advice_details.attributes.each do |k, v| %>
-         
-            <% case k 
-            when "choice" %><% k = "ambito" %>
-            <% when "place" %> <% k = "struttura" %>
-            <% when "province" %> <% k = "provincia" %>
-            <% when "topic" %> <% k = "argomento" %>
-            <% when "description" %> <% k = "descrizione" %>
-            <% when "keyword" %> <% k  = "keyword" %>
-            <% else %>
-                <% next %>
-            <% end %>
-            <div class="well">
-                <div class="row">
-                    <div class="col-md"></div><p class="col-md-2"><strong><%=k.upcase%></strong>:</p><p class="col-md-6"><%=v %></p>
-                </div>
-            </div>  
+        <h1 class='advices'><span class="homeh1color1">T</span>ipologia: <span class="homeh1color1"><%=@advice_details.typology[0].upcase unless @advice_details.typology.nil? %></span><%=@advice_details.typology[1, @advice_details.typology.length] unless @advice_details.typology.nil? %>
+         <%= link_to advices_path, id: "list_button", class: "btn btn-lg btn-danger active" do %>
+                      <i class="fas fa-bars">  Torna all'elenco</i><br/>
         <% end %>
-            
-          </div>    
-      
-    </div>
+        </h1>
+        </div>
+        <br/>
+        <div class="container">
+           
+          <% @advice_details.attributes.each do |k, v| %>
+             
+                <% case k 
+                when "choice" %><% k = "ambito" %>
+                <% when "place" %> <% k = "struttura" %>
+                <% when "province" %> <% k = "provincia" %>
+                <% when "topic" %> <% k = "argomento" %>
+                <% when "description" %> <% k = "descrizione" %>
+                <% when "keyword" %> <% k  = "keyword" %>
+                <% else %>
+                    <% next %>
+                <% end %>
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md"></div><p class="col-md-2"><strong><%=k.upcase%></strong>:</p><p class="col-md-6"><%=v %></p>
+                    </div>
+                </div>  
+            <% end %>
+                
+              </div>    
+          
+        </div>
  </div>
 
     
