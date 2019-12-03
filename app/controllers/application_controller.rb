@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   include ApplicationHelper
   protect_from_forgery with: :exception
-  before_action :authenticate_member!, :except => [:home]
-  
+  #before_action :authenticate_member!, :except => [:home]
+  before_action :authenticate_member! 
   
   def flash_class(level)
       case level
