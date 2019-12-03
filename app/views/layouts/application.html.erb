@@ -38,12 +38,14 @@
 <div class="navbar navbar-inverse navbar-static-top">
 
      <div class="container">
-        <%= link_to root_path, class: 'navbar-brand' do %>
-            <!--<i class="fa fa-flask" ></i>-->
-          <i class="far fa-handshake"></i>     
-          PUNTO COLLABORA <!--<strong>+</strong> -->
-          <% end %> 
-       
+        <% if current_member %>
+            <%= link_to root_path, class: 'navbar-brand' do %>
+                <!--<i class="fa fa-flask" ></i>-->
+                  
+                  <i class="far fa-handshake"></i>     
+                  PUNTO COLLABORA <!--<strong>+</strong> -->
+              <% end %> 
+         <% end %> 
           <!--<a href="#" class="navbar-brand">COLLABORAFARMACISOLA</a>-->
           <button class="navbar-toggle" data-toggle = "collapse" data-target =".navHeaderCollapse">
             <span class='icon-bar'></span>
@@ -54,9 +56,9 @@
               <div class="nav navbar-nav navbar-right">
                   <% if current_member %>
                       <%= button_to 'Sign Out', destroy_member_session_path, method: :delete, class: 'btn btn-primary navbar-btn'%>
-                  <% else %>      
-                      <%= link_to 'Area Riservata', new_member_session_path, class: "btn btn-danger navbar-btn active", method: :get %>
-                      <%#= link_to 'Sign Up', new_member_registration_path, class: "btn btn-success navbar-btn", method: :get %>
+                  <% else %>
+                       <!-- to replace in a second phase 
+                      <%#= link_to 'Area Riservata', new_member_session_path, class: "btn btn-danger navbar-btn active", method: :get %> -->
                   <% end %>      
               </div>
               
@@ -92,7 +94,9 @@
           <%= yield %>  
     </div>
     <!--<div><%#= current_member %></div> -->
-<%= render partial: "footer" %>
+<% if current_member %>
+    <%= render partial: "footer" %>
+<% end %>    
 </body>
 
 </html>
