@@ -62,23 +62,26 @@
                   <% end %>      
               </div>
               
-                <% if current_member %>
+                
  
                 <ul class="nav navbar-nav navbar-right">
                 <!--<li class="active"><a href="#">MENU</a></li> -->
+                
                 <li class="dropdown active">
+                 <% if current_member && (current_member.email == Member.first.email || current_member.email == Member.find_by_id(3).email)%>    
                   <a id="menu" href="/pages/home" class="dropdown" data-toggle="dropdown">Menu</a>          
                        <ul class="dropdown-menu">
                          <li><%=link_to "Dati Raccolti", advices_path %></li>
                          <li><%= link_to "Analisi dei Risultati", advices_statistics_path %></li>
-                         <% if current_member.email == Member.first.email %>
+                  <% end %>         
+                         <% if current_member && (current_member.email == Member.first.email) %>
                              <li><%=link_to "Registrazione Utenti", new_member_registration_path %></li>
                              <li><%= link_to "Modifica Utenti", edit_member_registration_path %></li>
                          <% end %>      
                        </ul>
                     </li>
                  </ul>
-                <% end %> 
+                <%# end %> 
           </div>
      </div>  
 
