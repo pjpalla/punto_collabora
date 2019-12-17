@@ -3,11 +3,14 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.4.0'
-gem 'rails', '4.2.8'
+gem 'rails', "4.2.11.1"
+# Use postgresql gem
+gem 'pg', ' 0.15'
 #update json gem
 gem 'json', '>= 1.8.3'
 # Use docx to parse doc files
-gem 'docx', '0.2.07'
+#gem 'docx', '0.2.07'
+gem 'docx', '0.3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 5.0'
 # Use bootstrap library for styles
@@ -27,10 +30,8 @@ gem "chartkick", ">= 3.3.0"
 gem 'will_paginate', '~> 3.1.0'
 # Use lazy highchart to dispaly beautyful graphs
 gem 'lazy_high_charts'
-
-
-
-
+# Update rubyzip version
+gem "rubyzip", "1.3.0"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -78,7 +79,7 @@ end
 
 group :production do
   # Use postgresql as the database for production
-  gem 'pg', ' 0.15'
+#  gem 'pg', ' 0.15'
   gem 'rails_12factor'
 end
 
