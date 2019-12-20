@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.4.0'
-gem 'rails', "4.2.11.1"
+gem 'rails', "5.0.7.2"
 # Use postgresql gem
 gem 'pg', ' 0.15'
 #update json gem
