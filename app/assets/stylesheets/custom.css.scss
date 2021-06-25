@@ -30,6 +30,7 @@
   /* Set the fixed height of the footer here */
   height: 100px;
   background-color: #f5f5f5;
+  border: solid darkred 1px;
   //background-color: #222;
 }
 
@@ -53,6 +54,10 @@
 .q-bg{
     background-color: #d2d2e0;
     
+}
+
+div.well{
+    border: solid darkred 1px;
 }
 
 .well.question-block{
@@ -251,18 +256,26 @@ fieldset
   border-radius:8px;	
 }
 
+fieldset.warning_choice{
+    border: solid darkred 1px;
+}
+
 h1.home_title{
 
 }
 
 #head {
-    background-color: #fdf60f;
+    background-color: #f2dede;
     padding-top: 25px;
     padding-bottom: 25px;
 }
 
 #intro1, #intro2, #intro3 {
-    width: 300px;
+    width: 500px;
+    height: 200px;
+    background-color: darkred;
+    font-size: 30px;
+    border-color: grey;
 }
 
 #advice_arrow{
@@ -305,9 +318,11 @@ h1.home_title{
 }    
 
 .panel-warning>.panel-heading{
-    background-color: #f0ad4e;
+    background-color: darkred;
+    border: solid darkred 1px;
     color: white;
     text-align: center;
+    
 }
 
 .panel-success>.panel-heading{
@@ -316,6 +331,11 @@ h1.home_title{
     color: white;
     text-align: center;
 }
+
+div.panel-body{
+    border: solid darkred 1px;
+}
+
 
 .panel-success>.panel-heading.advice_stat1{
     background-color: rgb(67, 67, 72);
@@ -328,6 +348,7 @@ h1.home_title{
 .panel-danger>.panel-heading{
 
     text-align: center;
+    border: solid darkred 1px;
 }
 
 .row{
@@ -365,6 +386,7 @@ h1.advices{
 
 #menu{
     margin-right: 50px;
+    background-color: darkred;
 }
 
 #thank_you{
@@ -402,3 +424,11 @@ h1.advices{
   border-color: coral;
   border-width: 1px;
 } */
+
+.navbar-inverse{
+    background-color: darkred;
+}
+
+#advice_arrow .btn .btn-lg .btn-danger:active{
+    background-color: darkred;
+}
