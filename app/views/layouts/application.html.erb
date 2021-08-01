@@ -42,7 +42,7 @@
             <%= link_to root_path, class: 'navbar-brand' do %>
                 <!--<i class="fa fa-flask" ></i>-->
                   
-                  <i class="fas fa-head-side-mask"></i>     
+                  <i class="fas fa-syringe"></i>     
                   PUNTO COLLABORA COVID 19<!--<strong>+</strong> -->
               <% end %> 
          <% end %> 
@@ -71,7 +71,7 @@
                  <% if current_member && (current_member.email == Member.first.email || current_member.email == Member.find_by_id(3).email)%>    
                   <a id="menu" href="/pages/home" class="dropdown" data-toggle="dropdown">Menu</a>          
                        <ul class="dropdown-menu">
-                         <li><%=link_to "Dati Raccolti", advices_path %></li>
+                         <!--<li><%#=link_to "Dati Raccolti", advices_path %></li> -->
                          <li><%= link_to "Analisi dei Risultati", advices_statistics_path %></li>
                   <% end %>         
                          <% if current_member && (current_member.email == Member.first.email) %>
