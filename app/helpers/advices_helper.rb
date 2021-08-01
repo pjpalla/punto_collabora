@@ -52,13 +52,11 @@ def create_advice_details(advice_id, session)
         if k == "advice01"
             advice_details.typology = session[k].downcase
         end
-        
-        if k  =~ /advice02_/
-           places.append(session[k].downcase)
-        end
-        
-        if k == "advice03"
+        if k == "advice02"
             advice_details.province = session[k]
+        end
+        if k  =~ /advice03_/
+           places.append(session[k].downcase)
         end
         if k  =~ /advice04_/
             topics.append(session[k].downcase)
@@ -97,6 +95,7 @@ def count_elements(original_list)
     counts = Hash.new(0)
     original_list.each do |p|
         elements.append(p.split(", "))
+        #elements.append(p)
     end
     pp = elements.flatten()
     
@@ -126,17 +125,36 @@ def get_place_by_province(choice)
     stacked_data
 end
 
+### the method provides the reportings (topics) and the related problems or advices. It correlates a particular reporting to the different problems or advices (description)
+def get_topic_by_description(typology)
+    reportings = AdviceDetail.where(:typology => typology).distinct.pluck(:topic)
+    
+    stacked_data = []
+    reportings.each do |r|
+        description_list = AdviceDetail.where(topic: r, typology: typology).pluck(:description)
+        logger.info "Description List: #{description_list}"
+        descriptions = count_elements(description_list)
+        logger.info "*** descriptions: #{descriptions}"
+        d = {:name => r, :data => descriptions.map{|k,v| [k.capitalize, v]}}
+        stacked_data.append(d)
+    end
+    stacked_data
+end    
+        
+    
+
 
 def create_bubble_series(keyword_occurences)
     bubble_series = []
-    xmax = keyword_occurences.keys.length
+    xmax = keyword_occurences.keys.length 
     ymax = keyword_occurences.values.max
+    logger.info "ymax: #{ymax}"
     
     tot = keyword_occurences.values.sum
     bubble_series = keyword_occurences.map do |k,v|
         
-        percentage = 100*(v.to_f/tot).round(2)
-        {x: rand(xmax), y: rand(ymax), z: v, keyword: k, percentuale: percentage}
+        percentage = 100*(v.to_f/tot).round(3)
+        {x: rand(xmax + 5), y: v, z: v, keyword: k, percentuale: percentage}
 
     end
     #binding.pry
@@ -147,6 +165,7 @@ end
 def generate_bubble(occurrences)
    #bubble_series = [{x: 1, y: 2, z: 3}, {x: 4, y: 5, z: 6}]
    bubble_series = create_bubble_series(occurrences)
+   logger.info "bubble_series: #{bubble_series}"
    mychart = LazyHighCharts::HighChart.new('bubble') do |f|
           f.title(text: 'Distribuzione delle keyword utilizzate')            
           f.chart(type: 'bubble', zoomType: 'xy', plotBorderWidth: 1) 
