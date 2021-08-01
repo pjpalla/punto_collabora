@@ -99,11 +99,14 @@ class AdvicesController < ApplicationController
     session[:color_selection] = params[:color_selection] if params[:color_selection]
     session[:choice] = params[:selection] if params[:selection]
     session[:advice01] = params[:advice01] if params[:advice01]
-    session[:advice02_a] = params[:advice02_a] if params[:advice02_a] #Ospedale
-    session[:advice02_b] = params[:advice02_b] if params[:advice02_b] #Farmacia
-    session[:advice02_c] = params[:advice02_c] if params[:advice02_c] #Poliambulatorio
-    session[:advice02_d] = params[:advice02_d] if params[:advice02_d] #Ambulatorio medico
-    session[:advice03] = params[:advice03] if params[:advice03] #provincia selezionata
+    session[:advice02] = params[:advice02] if params[:advice02]
+    session[:advice03_a] = params[:advice03_a] if params[:advice03_a] #Ospedale
+    session[:advice03_b] = params[:advice03_b] if params[:advice03_b] #Farmacia
+    session[:advice03_c] = params[:advice03_c] if params[:advice03_c] #Poliambulatorio
+    session[:advice03_d] = params[:advice03_d] if params[:advice03_d]#Ambulatorio medico
+    session[:advice03_e] = params[:advice03_e] if params[:advice03_e]
+    session[:advice03_f] = params[:advice03_f] if params[:advice03_f]
+    #session[:advice03] = params[:advice03] if params[:advice03] #provincia selezionata
     session[:advice04_a] = params[:advice04_a] if params[:advice04_a] #Distribuzione presidi medici
     session[:advice04_b] = params[:advice04_b] if params[:advice04_b] #Sistemi di prenotazione
     session[:advice04_c] = params[:advice04_c] if params[:advice04_c] #Distribuzione di farmaci
@@ -155,7 +158,12 @@ class AdvicesController < ApplicationController
     occurrences2 = AdviceDetail.where(:choice => "farmaci acquistati su internet").group(:keyword).count
     @chart2 = generate_bubble(occurrences2)
     
-    occurrences3 = AdviceDetail.where(:choice => "sistema sanitario").group(:keyword).count
+    #occurrences3 = AdviceDetail.where(:choice => "sistema sanitario").group(:keyword).count
+    keywords = AdviceDetail.where(:choice => "sistema sanitario").pluck(:keyword)
+   
+    logger.info "keywords: #{keywords}"
+    occurrences3 = count_elements(keywords)
+    logger.info "keyword occurences: #{occurrences3}"
     @chart3 = generate_bubble(occurrences3)
     
   
