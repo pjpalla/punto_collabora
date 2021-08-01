@@ -6,7 +6,7 @@
 </div>
 <div class="row">
  <div class="container">
-  <p>Specificare l'oggetto della segnalazione tra quelli di seguito riportati</p>
+ <!-- <p>Specificare l'oggetto della segnalazione tra quelli di seguito riportati</p> -->
   
   <% if session[:choice] == "drugs" %>
           <form>
@@ -25,28 +25,28 @@
           </form>
           
     <% elsif session[:choice] == "health system"%>
-          <form>
-            <div class="checkbox">
-              <input type="hidden" name="advice04_a" value="">      
-              <label><input type="checkbox" name="advice04_a" value="Distribuzione di dispositivi/presidi medici" <%= 'checked'  if session[:advice04_a] == "Distribuzione di dispositivi/presidi medici" %>>Distribuzione di dispositivi/presidi medici</label>
+         <!--<form> -->
+            <div class="radio">
+              <!--<input type="hidden" name="advice04_a" value=""> -->      
+              <label><input type="radio" name="advice04_a" value="Distribuzione materiale sanitario / farmaci" <%= 'checked'  if session[:advice04_a] == "Distribuzione materiale sanitario / farmaci" %>>Distribuzione materiale sanitario / farmaci</label>
             </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice04_b" value="">      
-              <label><input type="checkbox" name = "advice04_b" value="Sistemi di prenotazione" <%= 'checked'  if session[:advice04_b] == "Sistemi di prenotazione" %>>Sistemi di prenotazione</label>
+            <div class="radio">
+              <!--<input type="hidden" name="advice04_a" value=""> -->      
+              <label><input type="radio" name = "advice04_a" value="Campagna di vaccinazione" <%= 'checked'  if session[:advice04_a] == "Campagna di vaccinazione" %>>Campagna di vaccinazione</label>
             </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice04_c" value="">      
-              <label><input type="checkbox" name = "advice04_c" value="Distribuzione di farmaci" <%= 'checked'  if session[:advice04_c] == "Distribuzione di farmaci" %>>Distribuzione di farmaci</label>
+            <div class="radio">
+              <!--<input type="hidden" name="advice04_a" value="">-->     
+              <label><input type="radio" name = "advice04_a" value="Campagne di screening" <%= 'checked'  if session[:advice04_a] == "Campagne di screening" %>>Campagne di screening</label>
             </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice04_d" value="">      
-              <label><input type="checkbox" name = "advice04_d" value="Campagne di vaccinazione" <%= 'checked'  if session[:advice04_d] == "Campagne di vaccinazione" %>>Campagne di vaccinazione</label>
+            <div class="radio">
+              <!--<input type="hidden" name="advice04_a" value="">-->     
+              <label><input type="radio" name = "advice04_a" value="Esami / visite specialistiche" <%= 'checked'  if session[:advice04_a] == "Esami / visite specialistiche" %>>Esami / visite specialistiche</label>
             </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice04_e" value="">      
-              <label><input type="checkbox" name = "advice04_e"value="Altro" <%= 'checked'  if session[:advice04_e] == "Altro" %>>Altro</label>
+            <div class="radio">
+              <!--<input type="hidden" name="advice04_a" value="">-->     
+              <label><input type="radio" name = "advice04_a"value="Altro" <%= 'checked'  if session[:advice04_a] == "Altro" %>>Altro</label>
             </div>
-          </form>
+        <!--  </form> -->
     <% elsif session[:choice] == "shopping" %>
           <form>
             <div class="checkbox">
@@ -69,4 +69,4 @@
 
 </div> 
  
- 
+ <%#= debug session[:advice04_a] %>

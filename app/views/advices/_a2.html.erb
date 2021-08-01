@@ -1,87 +1,20 @@
 <div class="row">
   <div class="panel panel-<%=session[:color_selection]%>">
     <div class="panel-heading"><%= extract_choice(session[:choice]).upcase + " - STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
-    <div class="panel-body" align="center">
-      <% if session[:choice] == "shopping" %>
-          <h2>Che tipo di sito hai utilizzato?</h2>
-      <% else %>
-          <h2>Qual è la struttura coinvolta?</h2>      
-      <% end %>
-    </div>  
+    <div class="panel-body" align="center"><h2>Provincia?</h2></div>
 </div>
-
 </div>
 <div class="row">
  <div class="container">
-  <p>Di seguito alcune alternative possibili</p>
-  <% if session[:choice] == "drugs" %>
-        <form>
-          <div class="checkbox">
-            <input type="hidden" name="advice02_a" value="">
-            <label><input type="checkbox" name="advice02_a" value="Ospedale" <%= 'checked'  if session[:advice02_a] == "Ospedale" %>>Ospedale</label>
-          </div>
-          <div class="checkbox">
-            <input type="hidden" name="advice02_b" value="">
-            <label><input type="checkbox" name="advice02_b" value="Farmacia" <%= 'checked' if session[:advice02_b] == "Farmacia" %>>Farmacia</label>
-          </div>
-          <div class="checkbox">
-            <input type="hidden" name="advice02_c" value="">
-            <label><input type="checkbox" name="advice02_c" value="Parafarmacia" <%= 'checked' if session[:advice02_c] == "Parafarmacia" %>>Parafarmacia</label>
-          </div>
-        </form>
-  <% elsif session[:choice] == "health system" %>
-      <form>
-        <div class="checkbox">
-          <input type="hidden" name="advice02_a" value="">
-          <label><input type="checkbox" name="advice02_a" value="Ospedale" <%= 'checked'  if session[:advice02_a] == "Ospedale" %>>Ospedale</label>
-        </div>
-        <div class="checkbox">
-          <input type="hidden" name="advice02_b" value="">
-          <label><input type="checkbox" name="advice02_b" value="Farmacia" <%= 'checked' if session[:advice02_b] == "Farmacia" %>>Farmacia</label>
-        </div>
-        <div class="checkbox">
-          <input type="hidden" name="advice02_c" value="">
-          <label><input type="checkbox" name="advice02_c" value="Poliambulatorio" <%= 'checked' if session[:advice02_c] == "Poliambulatorio" %>>Poliambulatorio</label>
-        </div>
-        <div class="checkbox">
-          <input type="hidden" name="advice02_d" value="">      
-          <label><input type="checkbox" name="advice02_d" value="Ambulatorio medico" <%= 'checked' if session[:advice02_d] == "Ambulatorio medico" %>>Ambulatorio medico</label>
-        </div>
-      </form>
-  <% elsif session[:choice] == "shopping" %>
-        <form>
-          <div class="checkbox">
-            <input type="hidden" name="advice02_a" value="">
-            <label><input type="checkbox" name="advice02_a" value="Sito di una farmacia presente sul territorio nazionale" <%= 'checked'  if session[:advice02_a] == "Sito di una farmacia presente sul territorio nazionale" %>>Sito di una farmacia presente sul territorio nazionale</label>
-          </div>
-          <div class="checkbox">
-            <input type="hidden" name="advice02_b" value="">
-            <label><input type="checkbox" name="advice02_b" value="Sito nazionale di sola vendita di prodotti su Internet" <%= 'checked' if session[:advice02_b] == "Sito nazionale di sola vendita di prodotti su Internet" %>>Sito nazionale di sola vendita di prodotti su Internet</label>
-          </div>
-          <div class="checkbox">
-            <input type="hidden" name="advice02_c" value="">
-            <label><input type="checkbox" name="advice02_c" value="Sito internazionale di sola vendita di prodotti su Internet" <%= 'checked' if session[:advice02_c] == "Sito internazionale di sola vendita di prodotti su Internet" %>>Sito internazionale di sola vendita di prodotti su Internet</label>
-          </div>
-        </form>  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <% end %>
-  
-  
-  
+  <% text_message = session[:choice] == "shopping" ? " ti trovi" : " è situata la struttura segnalata in precedenza" %>     
+  <!--<p>Indicare la provincia in cui <%#= text_message%></p> -->
+
+<% options = ["", "Città metropolitana di Cagliari", "Sud Sardegna", "Nuoro", "Oristano", "Sassari"] %>
+<%= select_tag "advice02", options_for_select(options, session[:advice02]), multiple: false, class: "selectpicker" %><br/><br/>
+
 </div>
 
 </div> 
  
- 
- 
+ <%#= debug(session[:choice]) %>
+ <%#= debug(params[:advice02]) %>

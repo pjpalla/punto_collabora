@@ -1,7 +1,10 @@
 <div class="row">
   <div class="panel panel-<%=session[:color_selection]%>">
     <div class="panel-heading"><%= extract_choice(session[:choice]).upcase + " - STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
-    <div class="panel-body" align="center"><h2>Di cosa si tratta?</h2></div>
+    <div class="panel-body" align="center">
+      <!--<h2>Di cosa si tratta?</h2> -->
+      <h2>È un suggerimento o un problema?</h2>
+    </div>
 </div>
 
 
@@ -9,8 +12,9 @@
 <fieldset class="<%= session[:color_selection] + '_choice'%>">
     <div class="radio">
       <label><input type="radio" name="advice01" value="Problema" <%= 'checked' if session[:advice01] == "Problema" %> >Problema</label><br/>
-      <label><input type="radio" name="advice01" value= "Esigenza/Suggerimento" <%= 'checked' if session[:advice01] == "Esigenza/Suggerimento" %>>Esigenza/Suggerimento</label>
+      <label><input type="radio" name="advice01" value= "Suggerimento" <%= 'checked' if session[:advice01] == "Suggerimento" %>>Suggerimento</label>
     </div>
 </fieldset>
 </div>
  
+ <%#= debug(session[:choice]) %>
