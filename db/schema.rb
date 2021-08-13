@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190917103416) do
+ActiveRecord::Schema.define(version: 20210813151130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,15 @@ ActiveRecord::Schema.define(version: 20190917103416) do
     t.string   "card"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "topic_descriptions", force: :cascade do |t|
+    t.integer  "aid"
+    t.string   "typology"
+    t.string   "topic"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", primary_key: "uid", force: :cascade do |t|

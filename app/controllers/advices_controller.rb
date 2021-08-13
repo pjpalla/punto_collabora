@@ -12,7 +12,8 @@ class AdvicesController < ApplicationController
   end
   
   def intro
-    render "intro"
+    @selection = "health system"
+    redirect_to new_advice_path(:selection => "health system")
   end  
 
   # GET /advices/1
@@ -48,6 +49,12 @@ class AdvicesController < ApplicationController
     logger.info "session[:advice01] = #{session[:advice01]}"
     logger.info "choice inside create: #{session[:choice]}"
     
+   
+    @default_keywords = get_defualt_keywords(session)
+    @selected_topics = get_topics_selected(session)
+    td_objs = create_topic_description_objects(100, "problema", @selected_topics, session)
+     
+    
     @advice = Advice.new(session[:advice_params])
     @advice.current_step = session[:advice_step]
 
@@ -61,7 +68,11 @@ class AdvicesController < ApplicationController
            logger.debug "aid: #{aid}"
            advice_details = create_advice_details(aid, session)
            logger.debug "advice_details: #{advice_details.inspect}"
-           advice_details.save 
+           advice_details.save
+           topic_description_objs = create_topic_description_objects(aid, advice_details.typology, @selected_topics, session)
+           topic_description_objs.each do |td|
+             td.save
+           end   
            session_cleaner
         end
       
@@ -112,11 +123,36 @@ class AdvicesController < ApplicationController
     session[:advice04_c] = params[:advice04_c] if params[:advice04_c] #Distribuzione di farmaci
     session[:advice04_d] = params[:advice04_d] if params[:advice04_d] #Campagne di vaccinazione  
     session[:advice04_e] = params[:advice04_e] if params[:advice04_e] #Altro 
-    session[:advice05_a] = params[:advice05_a] if params[:advice05_a] #Distribuzione presidi medici
-    session[:advice05_b] = params[:advice05_b] if params[:advice05_b] #Sistemi di prenotazione
-    session[:advice05_c] = params[:advice05_c] if params[:advice05_c] #Distribuzione di farmaci
-    session[:advice05_d] = params[:advice05_d] if params[:advice05_d] # Farmaci Inequivalenza
-    session[:advice05_e] = params[:advice05_e] if params[:advice05_e] # Farmaci inefficacia
+
+    session[:advice05_a_0] = params[:advice05_a_0] if params[:advice05_a_0] # Farmaci inefficacia
+    session[:advice05_b_0] = params[:advice05_b_0] if params[:advice05_b_0] #Distribuzione presidi medici
+    session[:advice05_c_0] = params[:advice05_c_0] if params[:advice05_c_0] #Sistemi di prenotazione
+    session[:advice05_d_0] = params[:advice05_d_0] if params[:advice05_d_0] #Distribuzione di farmaci
+    session[:advice05_e_0] = params[:advice05_e_0] if params[:advice05_e_0] # Farmaci Inequivalenza
+    
+    session[:advice05_a_1] = params[:advice05_a_1] if params[:advice05_a_1] #Distribuzione presidi medici
+    session[:advice05_b_1] = params[:advice05_b_1] if params[:advice05_b_1] #Sistemi di prenotazione
+    session[:advice05_c_1] = params[:advice05_c_1] if params[:advice05_c_1] #Distribuzione di farmaci
+    session[:advice05_d_1] = params[:advice05_d_1] if params[:advice05_d_1] # Farmaci Inequivalenza
+    session[:advice05_e_1] = params[:advice05_e_1] if params[:advice05_e_1] # Farmaci inefficacia
+    
+    session[:advice05_a_2] = params[:advice05_a_2] if params[:advice05_a_2] #Distribuzione presidi medici
+    session[:advice05_b_2] = params[:advice05_b_2] if params[:advice05_b_2] #Sistemi di prenotazione
+    session[:advice05_c_2] = params[:advice05_c_2] if params[:advice05_c_2] #Distribuzione di farmaci
+    session[:advice05_d_2] = params[:advice05_d_2] if params[:advice05_d_2] # Farmaci Inequivalenza
+    session[:advice05_e_2] = params[:advice05_e_2] if params[:advice05_e_2] # Farmaci inefficacia
+    
+    session[:advice05_a_3] = params[:advice05_a_3] if params[:advice05_a_3] #Distribuzione presidi medici
+    session[:advice05_b_3] = params[:advice05_b_3] if params[:advice05_b_3] #Sistemi di prenotazione
+    session[:advice05_c_3] = params[:advice05_c_3] if params[:advice05_c_3] #Distribuzione di farmaci
+    session[:advice05_d_3] = params[:advice05_d_3] if params[:advice05_d_3] # Farmaci Inequivalenza
+    session[:advice05_e_3] = params[:advice05_e_3] if params[:advice05_e_3] # Farmaci inefficacia
+    
+    session[:advice05_a_4] = params[:advice05_a_4] if params[:advice05_a_4] #Distribuzione presidi medici
+    session[:advice05_b_4] = params[:advice05_b_4] if params[:advice05_b_4] #Sistemi di prenotazione
+    session[:advice05_c_4] = params[:advice05_c_4] if params[:advice05_c_4] #Distribuzione di farmaci
+    session[:advice05_d_4] = params[:advice05_d_4] if params[:advice05_d_4] # Farmaci Inequivalenza
+    session[:advice05_e_4] = params[:advice05_e_4] if params[:advice05_e_4] # Farmaci inefficacia
     session[:keyword] = params[:keyword] if params[:keyword]
   end
   
