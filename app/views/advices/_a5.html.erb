@@ -53,55 +53,54 @@
             </form>
         <% end %>
   <% elsif session[:choice] == "health system" %>
-      <% if session[:advice01] == "Problema" %>
-          <form>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_a" value="">      
-              <label><input type="checkbox" name = "advice05_a" value="Sistema di prenotazione" <%= 'checked'  if session[:advice05_a] == "Sistema di prenotazione" %>>Sistema di prenotazione</label>
-            </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_b" value="">            
-              <label><input type="checkbox" name = "advice05_b" value="Difficoltà accesso al servizio" <%= 'checked'  if session[:advice05_b] == "Difficoltà accesso al servizio" %>>Difficoltà accesso al servizio</label>
-            </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_c" value="">            
-              <label><input type="checkbox" name = "advice05_c" value="Materiale non utilizzato / in eccesso" <%= 'checked'  if session[:advice05_c] == "Materiale non utilizzato / in eccesso" %>>Materiale non utilizzato / in eccesso</label>
-            </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_d" value="">            
-              <label><input type="checkbox" name = "advice05_d" value="Materiale carente / in difetto" <%= 'checked'  if session[:advice05_d] == "Materiale carente / in difetto" %>>Materiale carente / in difetto</label>
-            </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_e" value="">            
-              <label><input type="checkbox" name = "advice05_e" value="Costi" <%= 'checked'  if session[:advice05_e] == "Costi" %>>Costi</label>
-            </div>            
-          </form>
-      <% else %>
-          <form>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_a" value="">      
-              <label><input type="checkbox" name = "advice05_a" value="Un punto di informazione vicino a dove si vive dove potersi recare per avere informazioni" <%= 'checked'  if session[:advice05_a] == "Un punto di informazione dove potersi recare, vicino a dove si vive, per avere informazioni" %>>Un punto di informazione dove potersi recare, vicino a dove si vive, per avere informazioni</label>
-            </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_b" value="">            
-              <label><input type="checkbox" name = "advice05_b" value="Un punto di informazione a cui poter telefonare per avere informazioni" <%= 'checked'  if session[:advice05_b] == "Un punto di informazione a cui poter telefonare per avere informazioni" %>>Un punto di informazione a cui poter telefonare per avere informazioni</label>
-            </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_c" value="">            
-              <label><input type="checkbox" name = "advice05_c" value="Luogo dove riconsegnare il materiale non utilizzato" <%= 'checked'  if session[:advice05_c] == "Luogo dove riconsegnare il materiale non utilizzato" %>>Luogo dove riconsegnare il materiale non utilizzato</label>
-            </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_d" value="">            
-              <label><input type="checkbox" name = "advice05_d" value="Differenziare la distribuzione" <%= 'checked'  if session[:advice05_d] == "Differenziare la distribuzione" %>>Differenziare la distribuzione</label>
-            </div>
-            <div class="checkbox">
-              <input type="hidden" name="advice05_e" value="">            
-              <label><input type="checkbox" name = "advice05_e" value="Modifica organizzazione del servizio" <%= 'checked'  if session[:advice05_e] == "Modifica organizzazione del servizio" %>>Modifica organizzazione del servizio</label>
-            </div>            
-            
-          </form>      
-     <% end %>
-     
+           <form>
+          <% @selected_topics.each_with_index do |t, idx| %>
+               <h3 style="background-color:<%= cycle("red", "green", "blue", "purple", "orange")%>" class='topics'><%= t %></h3>
+               <% if session[:advice01] == "Problema" %>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_a_#{idx}"%> value="">      
+                      <label><input type="checkbox" name = <%="advice05_a_#{idx}"%> value="Sistema di prenotazione" <%= 'checked'  if session["advice05_a_#{idx}".to_sym] == "Sistema di prenotazione" %>>Sistema di prenotazione</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_b_#{idx}"%> value="">            
+                      <label><input type="checkbox" name = <%="advice05_b_#{idx}"%> value="Difficoltà accesso al servizio" <%= 'checked'  if session["advice05_b_#{idx}".to_sym] == "Difficoltà accesso al servizio" %>>Difficoltà accesso al servizio</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_c_#{idx}" %> value="">            
+                      <label><input type="checkbox" name = <%="advice05_c_#{idx}"%> value="Materiale non utilizzato / in eccesso" <%= 'checked'  if session["advice05_c_#{idx}".to_sym] == "Materiale non utilizzato / in eccesso" %>>Materiale non utilizzato / in eccesso</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_d_#{idx}"%> value="">            
+                      <label><input type="checkbox" name = <%="advice05_d_#{idx}"%> value="Materiale carente / in difetto" <%= 'checked'  if session["advice05_d_#{idx}".to_sym] == "Materiale carente / in difetto" %>>Materiale carente / in difetto</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_e_#{idx}"%> value="">            
+                      <label><input type="checkbox" name = <%="advice05_e_#{idx}"%> value="Costi" <%= 'checked'  if session["advice05_e_#{idx}".to_sym] == "Costi" %>>Costi</label>
+                    </div>            
+                <% else %>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_a_#{idx}" %> value="">      
+                      <label><input type="checkbox" name = <%="advice05_a_#{idx}" %> value="Un punto di informazione dove potersi recare, vicino a dove si vive, per avere informazioni" <%= 'checked'  if session["advice05_a_#{idx}".to_sym] == "Un punto di informazione dove potersi recare, vicino a dove si vive, per avere informazioni" %>>Un punto di informazione dove potersi recare, vicino a dove si vive, per avere informazioni</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_b_#{idx}"%> value="">            
+                      <label><input type="checkbox" name = <%="advice05_b_#{idx}"%> value="Un punto di informazione a cui poter telefonare per avere informazioni" <%= 'checked'  if session["advice05_b_#{idx}".to_sym] == "Un punto di informazione a cui poter telefonare per avere informazioni" %>>Un punto di informazione a cui poter telefonare per avere informazioni</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_c_#{idx}"%> value="">            
+                      <label><input type="checkbox" name = <%="advice05_c_#{idx}"%> value="Luogo dove riconsegnare il materiale non utilizzato" <%= 'checked'  if session["advice05_c_#{idx}".to_sym] == "Luogo dove riconsegnare il materiale non utilizzato" %>>Luogo dove riconsegnare il materiale non utilizzato</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_d_#{idx}"%> value="">            
+                      <label><input type="checkbox" name = <%="advice05_d_#{idx}"%> value="Differenziare la distribuzione" <%= 'checked'  if session["advice05_d_#{idx}".to_sym] == "Differenziare la distribuzione" %>>Differenziare la distribuzione</label>
+                    </div>
+                    <div class="checkbox">
+                      <input type="hidden" name=<%="advice05_e_#{idx}"%> value="">            
+                      <label><input type="checkbox" name = <%="advice05_e_#{idx}"%> value="Modifica organizzazione del servizio" <%= 'checked'  if session["advice05_e_#{idx}".to_sym] == "Modifica organizzazione del servizio" %>>Modifica organizzazione del servizio</label>
+                    </div>            
+                <% end %>
+          <% end %>   
+       </form> 
   <% elsif session[:choice] == "shopping" %>
       <% if session[:advice01] == "Problema" %>
           <form>
@@ -162,4 +161,4 @@
 </div>
 </div> 
  
- 
+ <%#= debug params[:advice05_a_1] %>

@@ -27,7 +27,7 @@
     <% unless ch == "farmaci acquistati su internet" %>
             <div class="row">
                 <div class="panel panel-success col-md-6">
-                    <div class="panel-heading advice_stat2"><%= "#{ch.upcase} - " %>LUOGHI SEGNALATI</div>
+                    <div class="panel-heading advice_stat2"><%= "#{ch.upcase} - " %>STRUTTURE INDICATE</div>
                     <div class="panel-body">
                         <div>
                             <% places = get_places_by_choice(ch) %>
@@ -36,11 +36,11 @@
                     </div>
                 </div>
                 <div class="panel panel-success col-md-6">
-                    <div class="panel-heading advice_stat1"><%= "#{ch.upcase} - " %>LUOGHI SEGNALATI PER PROVINCIA</div>
+                    <div class="panel-heading advice_stat1"><%= "#{ch.upcase} - " %>STRUTTURE INDICATE PER PROVINCIA</div>
                     <div class="panel-body">
                         <div>
                             <% places_by_province = get_place_by_province(ch) %>
-                            <%= bar_chart places_by_province, stacked: true, library: {title: "Luoghi segnalati in ciascuna provincia"} %>
+                            <%= bar_chart places_by_province, stacked: true, library: {title: "STRUTTURE INDICATE in ciascuna provincia"} %>
                             <%#= pie_chart(@typologies, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
      <% else %>
      <div class="row">
                 <div class="panel panel-success">
-                    <div class="panel-heading advice_stat2"><%= "AMBITO: #{ch.upcase} - " %>LUOGHI SEGNALATI</div>
+                    <div class="panel-heading advice_stat2"><%= "AMBITO: #{ch.upcase} - " %>STRUTTURE INDICATE</div>
                     <div class="panel-body">
                         <div>
                             <% places = get_places_by_choice(ch) %>
@@ -60,11 +60,11 @@
      </div>
      <div class="row">
                 <div class="panel panel-success">
-                    <div class="panel-heading advice_stat1"><%= "AMBITO: #{ch.upcase} - " %>LUOGHI SEGNALATI PER PROVINCIA</div>
+                    <div class="panel-heading advice_stat1"><%= "AMBITO: #{ch.upcase} - " %>STRUTTURE INDICATE PER PROVINCIA</div>
                     <div class="panel-body">
                         <div>
                             <% places_by_province = get_place_by_province(ch) %>
-                            <%= bar_chart places_by_province, stacked: true, library: {title: "Luoghi segnalati in ciascuna provincia"} %>
+                            <%= bar_chart places_by_province, stacked: true, library: {title: "STRUTTURE INDICATE in ciascuna provincia"} %>
                             <%#= pie_chart(@typologies, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
                         </div>
                     </div>
@@ -128,8 +128,8 @@
                 </div>
             </div>
         </div>
-        <% if @choice == 'drugs' %>
-            <div class="panel panel-success col-md-6">
+        <%# if @choice == 'drugs' %>
+        <div class="panel panel-success col-md-6">
                 <div class="panel-heading advice_stat1"><%="Suggerimenti per segnalazione effettuata".upcase %></div>
                 <div class="panel-body">
                     <div>
@@ -139,7 +139,7 @@
                     </div>
                 </div>
             </div>
-        <% end %>    
+        <%# end %>    
   </div>
 
 <% @choice_alternatives.each do |ch| %>
