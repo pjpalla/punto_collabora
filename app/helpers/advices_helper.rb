@@ -125,13 +125,29 @@ def get_place_by_province(choice)
     stacked_data
 end
 
+def create_topic_description_objects(aid, typology, selected_topics, session)
+    topic_description_objs = []
+    selected_topics.each_with_index do |t, idx|
+       topic = t
+       descriptions = ['a','b','c','d','e'].map do |l|
+           session["advice05_#{l}_#{idx}".to_sym]
+       end
+       descriptions = descriptions.reject(&:blank?)
+       descriptions = descriptions.join(', ')
+       td = TopicDescription.new(aid: aid, typology: typology, topic: topic, description: descriptions)
+       topic_description_objs << td
+    end
+    topic_description_objs
+end
+
 ### the method provides the reportings (topics) and the related problems or advices. It correlates a particular reporting to the different problems or advices (description)
 def get_topic_by_description(typology)
-    reportings = AdviceDetail.where(:typology => typology).distinct.pluck(:topic)
+    #reportings = AdviceDetail.where(:typology => typology).distinct.pluck(:topic)
+    reportings = TopicDescription.where(:typology => typology).distinct.pluck(:topic)
     
     stacked_data = []
     reportings.each do |r|
-        description_list = AdviceDetail.where(topic: r, typology: typology).pluck(:description)
+        description_list = TopicDescription.where(topic: r, typology: typology).pluck(:description)
         logger.info "Description List: #{description_list}"
         descriptions = count_elements(description_list)
         logger.info "*** descriptions: #{descriptions}"
@@ -139,7 +155,18 @@ def get_topic_by_description(typology)
         stacked_data.append(d)
     end
     stacked_data
-end    
+end
+
+def get_topics_selected(session)
+    topics_selected = []
+    session.keys.each do |k|
+        if k =~ /advice04_[abcdef]/ and session[k] != ""
+           topics_selected << session[k]
+        end
+    end
+    topics_selected
+end
+    
         
     
 
@@ -192,6 +219,19 @@ def generate_bubble(occurrences)
          )
     end
     mychart
+end 
+
+
+
+def get_defualt_keywords(session)
+    default_keywords = []
+    session.keys.each do |k|
+        if k =~ /advice03_[abcdef]/ and session[k] != ""
+            default_keywords << session[k]
+            
+        end
+    end
+    default_keywords.join(', ')
 end    
     
 end    
