@@ -6,7 +6,8 @@
           <h2>Che tipo di sito hai utilizzato?</h2>
       <% else %>
           <!--<h2>Qual è la struttura coinvolta?</h2> -->
-          <h2>Qual è il tipo di struttura per cui si vuole indicare un <%= (session[:advice01]).downcase if session[:advice01] %> ?</h2>
+          <h2>Qual è il tipo di struttura per cui vuole indicare un <%= (session[:advice01] ).downcase if session[:advice01] %> ? 
+          (Di seguito le eventuali tipologie)</h2>
       <% end %>
     </div>  
 </div>
@@ -33,8 +34,16 @@
   <% elsif session[:choice] == "health system" %>
       <form>
         <div class="checkbox">
-          <input type="hidden" name="advice03_a" value="">
+          <input type="hidden" name="advice03_d" value="">      
+          <label><input type="checkbox" name="advice03_d" value="Ambulatorio medico" <%= 'checked' if session[:advice03_d] == "Ambulatorio medico" %>>Ambulatorio medico</label>
+        </div>        
+        <div class="checkbox">
+        <input type="hidden" name="advice03_a" value="">
           <label><input type="checkbox" name="advice03_a" value="Farmacia" <%= 'checked' if session[:advice03_a] == "Farmacia" %>>Farmacia</label>
+        </div>
+        <div class="checkbox">
+          <input type="hidden" name="advice03_f" value="">      
+          <label><input type="checkbox" name="advice03_f" value="Hub" <%= 'checked' if session[:advice03_f] == "Hub" %>>Hub</label>
         </div>        
         <div class="checkbox">
           <input type="hidden" name="advice03_b" value="">
@@ -44,18 +53,12 @@
           <input type="hidden" name="advice03_c" value="">
           <label><input type="checkbox" name="advice03_c" value="Poliambulatorio" <%= 'checked' if session[:advice03_c] == "Poliambulatorio" %>>Poliambulatorio</label>
         </div>
-        <div class="checkbox">
-          <input type="hidden" name="advice03_d" value="">      
-          <label><input type="checkbox" name="advice03_d" value="Ambulatorio medico" <%= 'checked' if session[:advice03_d] == "Ambulatorio medico" %>>Ambulatorio medico</label>
-        </div>
+
         <div class="checkbox">
           <input type="hidden" name="advice03_e" value="">      
           <label><input type="checkbox" name="advice03_e" value="Usca" <%= 'checked' if session[:advice03_e] == "Usca" %>>Usca</label>
         </div>
-        <div class="checkbox">
-          <input type="hidden" name="advice03_f" value="">      
-          <label><input type="checkbox" name="advice03_f" value="Hub" <%= 'checked' if session[:advice03_f] == "Hub" %>>Hub</label>
-        </div>        
+        
       </form>
   <% elsif session[:choice] == "shopping" %>
         <form>

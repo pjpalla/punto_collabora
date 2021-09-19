@@ -194,7 +194,7 @@ def generate_bubble(occurrences)
    bubble_series = create_bubble_series(occurrences)
    logger.info "bubble_series: #{bubble_series}"
    mychart = LazyHighCharts::HighChart.new('bubble') do |f|
-          f.title(text: 'Distribuzione delle keyword utilizzate')            
+          f.title(text: 'Distribuzione delle keywords individuate')            
           f.chart(type: 'bubble', zoomType: 'xy', plotBorderWidth: 1) 
           f.xAxis [title: {text: 'Keywords'}]
           f.yAxis [title: {text: 'Occorrenze' }]

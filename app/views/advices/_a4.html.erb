@@ -1,7 +1,7 @@
 <div class="row">
   <div class="panel panel-<%=session[:color_selection]%>">
     <div class="panel-heading"><%= extract_choice(session[:choice]).upcase + " - STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
-    <div class="panel-body" align="center"><h2>Che cosa riguarda?</h2></div>
+    <div class="panel-body" align="center"><h2>Che cosa riguarda?<br/>(Di seguito gli eventuali argomenti)</h2></div>
 </div>
 </div>
 <div class="row">
@@ -27,20 +27,20 @@
     <% elsif session[:choice] == "health system"%>
          <!--<form> -->
             <div class="checkbox">
-              <input type="hidden" name="advice04_a" value="">    
-              <label><input type="checkbox" name="advice04_a" value="Distribuzione materiale sanitario / farmaci" <%= 'checked'  if session[:advice04_a] == "Distribuzione materiale sanitario / farmaci" %>>Distribuzione materiale sanitario / farmaci</label>
+              <input type="hidden" name="advice04_c" value="">     
+              <label><input type="checkbox" name = "advice04_c" value="Campagne di screening" <%= 'checked'  if session[:advice04_c] == "Campagne di screening" %>>Campagne di screening</label>
             </div>
             <div class="checkbox">
               <input type="hidden" name="advice04_b" value="">      
               <label><input type="checkbox" name = "advice04_b" value="Campagna di vaccinazione" <%= 'checked'  if session[:advice04_b] == "Campagna di vaccinazione" %>>Campagna di vaccinazione</label>
             </div>
             <div class="checkbox">
-              <input type="hidden" name="advice04_c" value="">     
-              <label><input type="checkbox" name = "advice04_c" value="Campagne di screening" <%= 'checked'  if session[:advice04_c] == "Campagne di screening" %>>Campagne di screening</label>
-            </div>
-            <div class="checkbox">
               <input type="hidden" name="advice04_d" value="">  
               <label><input type="checkbox" name = "advice04_d" value="Esami / visite specialistiche" <%= 'checked'  if session[:advice04_d] == "Esami / visite specialistiche" %>>Esami / visite specialistiche</label>
+            </div>            
+            <div class="checkbox">
+              <input type="hidden" name="advice04_a" value="">    
+              <label><input type="checkbox" name="advice04_a" value="Materiale sanitario / farmaci" <%= 'checked'  if session[:advice04_a] == "Materiale sanitario / farmaci" %>>Materiale sanitario / farmaci</label>
             </div>
             <div class="checkbox">
               <input type="hidden" name="advice04_e" value="">    

@@ -14,10 +14,10 @@
         </div>
     </div> -->
     <div class="panel panel-success col-md-12">
-        <div class="panel-heading advice_stat2">TIPOLOGIA SEGNALAZIONI</div>
+        <div class="panel-heading advice_stat2">TIPOLOGIA DELLE INDICAZIONI</div>
         <div class="panel-body">
             <div>
-                <%= pie_chart(@typologies, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
+                <%= pie_chart(@typologies, library: {title: "Tipologia indicazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
             </div>
         </div>
     </div>    
@@ -27,7 +27,7 @@
     <% unless ch == "farmaci acquistati su internet" %>
             <div class="row">
                 <div class="panel panel-success col-md-6">
-                    <div class="panel-heading advice_stat2"><%= "#{ch.upcase} - " %>STRUTTURE INDICATE</div>
+                    <div class="panel-heading advice_stat2"><%#= "#{ch.upcase} - " %>TIPOLOGIA DELLE STRUTTURE INDICATE</div>
                     <div class="panel-body">
                         <div>
                             <% places = get_places_by_choice(ch) %>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="panel panel-success col-md-6">
-                    <div class="panel-heading advice_stat1"><%= "#{ch.upcase} - " %>STRUTTURE INDICATE PER PROVINCIA</div>
+                    <div class="panel-heading advice_stat1"><%#= "#{ch.upcase} - " %>TIPOLOGIA DELLE STRUTTURE INDICATE PER PROVINCIA</div>
                     <div class="panel-body">
                         <div>
                             <% places_by_province = get_place_by_province(ch) %>
@@ -78,7 +78,7 @@
     <% topics = count_elements(AdviceDetail.where(:choice => ch).pluck(:topic)) %>
     <div class="row">
         <div class="panel panel-success">
-            <div class="panel-heading <%= cycle("advice_stat1", "advice_stat2") %>"><%= "#{ch.upcase} - " %>OGGETTO DELLE SEGNALAZIONI</div>
+            <div class="panel-heading <%= cycle("advice_stat1", "advice_stat2") %>"><%#= "#{ch.upcase} - " %>ARGOMENTO DELLE INDICAZIONI</div>
             <div class="panel-body">
                 <div>
                     <%= pie_chart(topics, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
@@ -98,7 +98,7 @@
     <% suggestions = count_elements(AdviceDetail.where(choice: ch, typology: "suggerimento").pluck(:description)) %>
     <div class="row">
         <div class="panel panel-success col-md-6">
-            <div class="panel-heading advice_stat1"><%= "#{ch.upcase} - " %>PROBLEMATICHE SEGNALATE</div>
+            <div class="panel-heading advice_stat1"><%#= "#{ch.upcase} - " %>POSSIBILI PROBLEMI INDICATI</div>
             <div class="panel-body">
                 <div>
                     <%= pie_chart(problems, library: {title: "Ambito", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
@@ -107,7 +107,7 @@
         </div>
         
         <div class="panel panel-success col-md-6">
-            <div class="panel-heading advice_stat2"><%= "#{ch.upcase} - " %>SUGGERIMENTI FORNITI</div>
+            <div class="panel-heading advice_stat2"><%#= "#{ch.upcase} - " %>SUGGERIMENTI INDICATI</div>
             <div class="panel-body">
                 <div>
                     <%= pie_chart(suggestions, library: {title: "Tipologia segnalazioni", pieSliceText: 'percentage', plotOptions: {pie: {dataLabels: {format: "<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)"}}}}) %>
@@ -119,7 +119,7 @@
 
   <div class = 'row'>
         <div class="panel panel-success col-md-6">
-            <div class="panel-heading advice_stat1"><%="Problematiche per segnalazione effettuata".upcase %></div>
+            <div class="panel-heading advice_stat1"><%="Possibili problemi indicati per argomento".upcase %></div>
             <div class="panel-body">
                 <div>
                     <% reportings_by_problem = get_topic_by_description("problema") %>
@@ -130,7 +130,7 @@
         </div>
         <%# if @choice == 'drugs' %>
         <div class="panel panel-success col-md-6">
-                <div class="panel-heading advice_stat1"><%="Suggerimenti per segnalazione effettuata".upcase %></div>
+                <div class="panel-heading advice_stat1"><%="Suggerimenti indicati per argomento".upcase %></div>
                 <div class="panel-body">
                     <div>
                         <% reportings_by_problem = get_topic_by_description("suggerimento") %>
@@ -146,7 +146,7 @@
 
     <div class="row">
         <div class="panel panel-success">
-            <div class="panel-heading <%=cycle('advice_stat1', 'advice_stat2') %>"><%= "#{ch.upcase} - " %>DISTRIBUZIONE KEYWORD</div>
+            <div class="panel-heading <%=cycle('advice_stat1', 'advice_stat2') %>"><%#= "#{ch.upcase} - " %>DISTRIBUZIONE DELLE KEYWORDS</div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <% case ch 
