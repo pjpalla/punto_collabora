@@ -11,28 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210813151130) do
+ActiveRecord::Schema.define(version: 20210919165624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "advice_details", force: :cascade do |t|
-    t.integer  "aid"
-    t.string   "choice"
-    t.string   "typology"
-    t.string   "place"
-    t.string   "province"
-    t.string   "topic"
-    t.string   "description"
-    t.string   "keyword"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "aid"
+    t.string  "choice"
+    t.string  "typology"
+    t.string  "place"
+    t.string  "province"
+    t.string  "topic"
+    t.string  "description"
+    t.string  "keyword"
   end
 
   create_table "advices", force: :cascade do |t|
-    t.integer  "uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "uid"
   end
 
   create_table "answers", primary_key: "aid", force: :cascade do |t|
@@ -158,12 +154,10 @@ ActiveRecord::Schema.define(version: 20210813151130) do
   end
 
   create_table "topic_descriptions", force: :cascade do |t|
-    t.integer  "aid"
-    t.string   "typology"
-    t.string   "topic"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer "aid"
+    t.string  "typology"
+    t.string  "topic"
+    t.text    "description"
   end
 
   create_table "users", primary_key: "uid", force: :cascade do |t|
