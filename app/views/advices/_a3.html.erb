@@ -1,13 +1,13 @@
 <div class="row">
   <div class="panel panel-<%=session[:color_selection]%>">
-    <div class="panel-heading"><%= extract_choice(session[:choice]).upcase + " - STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
+    <div class="panel-heading"><%= "STEP #{@advice.current_step_idx(@advice.current_step)}" %></div>
     <div class="panel-body" align="center">
       <% if session[:choice] == "shopping" %>
           <h2>Che tipo di sito hai utilizzato?</h2>
       <% else %>
           <!--<h2>Qual è la struttura coinvolta?</h2> -->
-          <h2>Qual è il tipo di struttura per cui vuole indicare un <%= (session[:advice01] ).downcase if session[:advice01] %> ? 
-          (Di seguito le eventuali tipologie)</h2>
+          <h2>Quale è il tipo di struttura per cui vuole indicare un possibile <%= (session[:advice01] ).downcase if session[:advice01] %> ? 
+          <br/>(Di seguito le eventuali tipologie)</h2>
       <% end %>
     </div>  
 </div>
